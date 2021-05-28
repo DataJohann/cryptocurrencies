@@ -20,3 +20,18 @@
     background-color:rgb(138, 223, 218) ;
 }
 
+.nav-link:active{
+    background-color: gray;
+}
+
+.dropdown-item-reddit{
+    color: RGBA(255, 86, 0, 1);
+}
+
+.dropdown-item-twitter{
+    color: RGB(29,161,242)
+}
+
+.dropdown-item-alexa{
+    color: rgb(55, 71, 90);
+}
