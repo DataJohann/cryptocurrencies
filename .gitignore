@@ -1,5 +1,6 @@
 # specific documents
 
+.DS_Store
 __pycache__
 .vscode
 config.py

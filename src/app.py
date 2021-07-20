@@ -9,7 +9,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
-# from flask_sqlalchemy import SQLAlchemy
+# from flask.sqlalchemy import SQLAlchemy
 # db = SQLAlchemy
 
 from flask import Flask, request, send_from_directory
@@ -28,7 +28,7 @@ app = Flask(__name__)
 
 # setup postgress connection
 
-rds_connection_string = f"postgres:{password}@localhost:5432/Cryptocurrencies"
+rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
 engine = create_engine(f'postgresql://{rds_connection_string}')
 
 # Reflect an existing database into a new model
@@ -62,21 +62,24 @@ def index():
     return render_template('index.html')
 
 
+@app.route("/custom.css")
+def css():
+
+    # return "test"
+    return send_from_directory('css', 'static/css/custom.css')
+
+
+
 # Make route to serve images from server
 @app.route("/templates/2018_reddit.png")
 def reddit_image():
     return send_file('templates/2018_reddit.png', mimetype='image')
 
-# @app.route("/alexa")
-# def alexa():
+@app.route("/alexa")
+def alexa():
 
-#     #show all cryptocurrencies
-#     tokens = list(cryptos.find())
-    
-#     for token in tokens:
-#         print(token['alexa_rank 01-04-2018'])
 
-#     return render_template('Alexa_Rank.html')
+    return render_template('Alexa_Rank.html')
 
 @app.route("/api")
 def api_home():
