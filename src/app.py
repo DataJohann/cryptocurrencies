@@ -72,11 +72,17 @@ def css():
 # def reddit_image():
 #     return send_file('templates/2018_reddit.png', mimetype='image')
 
+
+# Route for alexa page
+
 @app.route("/alexa")
 def alexa():
 
 
     return render_template('Alexa_Rank.html')
+
+
+# Route for twitter data page
 
 @app.route("/twitter")
 def twitter():
@@ -84,20 +90,35 @@ def twitter():
 
     return render_template('twitter.html')
 
+
+# Route for reddit data page
+
 @app.route("/reddit")
 def reddit():
 
 
     return render_template('reddit.html')
 
+@app.route("/dataextraction")
+def dataextractions():
+
+
+    return render_template('index.html')
+
+
+@app.route("/contact")
+def contact():
+
+    return render_template('index.html')
+
 @app.route("/api")
 def api_home():
     return(
         "Welcome to the cryptocurrency social media API! <br/>"
         "Available routes: <br/>"
-        "/data<br/>"
-        "/names<br/>"
-        "/single_search"
+        "/api/data<br/>"
+        "/api/names<br/>"
+        "/api/single_search"
 
 
     )
@@ -154,6 +175,17 @@ def data_by_name():
     price_json = price.to_json(orient='records', double_precision=3, )
     
     return price_json
+
+@app.route("/api/reddit")
+def reddit_api():
+
+
+    
+    result = pd.read_sql_query("select name, reddit_subscribers from cleaned_2018_stats", con=engine)
+
+    result_json = result.to_json(orient='records', double_precision=3, )
+    
+    return result_json
 
 
 if __name__ =="__main__":
