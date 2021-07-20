@@ -70,7 +70,7 @@ def css():
 
 
 
-# Make route to serve images from server
+# Make route to serve reddit image from server
 @app.route("/templates/2018_reddit.png")
 def reddit_image():
     return send_file('templates/2018_reddit.png', mimetype='image')
