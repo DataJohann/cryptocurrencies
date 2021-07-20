@@ -78,6 +78,18 @@ def alexa():
 
     return render_template('Alexa_Rank.html')
 
+@app.route("/twitter")
+def twitter():
+
+
+    return render_template('twitter.html')
+
+@app.route("/reddit")
+def reddit():
+
+
+    return render_template('reddit.html')
+
 @app.route("/api")
 def api_home():
     return(
