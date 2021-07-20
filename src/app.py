@@ -52,13 +52,6 @@ crypto_2018 = Base.classes.cleaned_2018_stats
 @app.route("/")
 def index():
 
-    #show all cryptocurrencies
-    # tokens = cryptos
-    
-    
-    # reddit_image = os.path.join("templates", "2018_reddit.png")
-
-    # return send_file('templates/2018_reddit.png', mimetype='image')
     return render_template('index.html')
 
 
@@ -69,11 +62,15 @@ def css():
     return send_from_directory('css', 'static/css/custom.css')
 
 
+#######################################################
+# You can serve images from routes also!!
+#######################################################
 
 # Make route to serve reddit image from server
-@app.route("/templates/2018_reddit.png")
-def reddit_image():
-    return send_file('templates/2018_reddit.png', mimetype='image')
+
+# @app.route("/templates/2018_reddit.png")
+# def reddit_image():
+#     return send_file('templates/2018_reddit.png', mimetype='image')
 
 @app.route("/alexa")
 def alexa():
