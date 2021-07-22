@@ -43,12 +43,6 @@ Base.prepare(engine, reflect=True)
 crypto_2018 = Base.classes.cleaned_2018_stats
 
 
-
-
-
-
-# print(cryptos)
-
 @app.route("/")
 def index():
 
@@ -60,17 +54,6 @@ def css():
 
     # return "test"
     return send_from_directory('css', 'static/css/custom.css')
-
-
-#######################################################
-# You can serve images from routes also!!
-#######################################################
-
-# Make route to serve reddit image from server
-
-# @app.route("/templates/2018_reddit.png")
-# def reddit_image():
-#     return send_file('templates/2018_reddit.png', mimetype='image')
 
 
 # Route for alexa page
@@ -99,6 +82,17 @@ def reddit():
 
     return render_template('reddit.html')
 
+#######################################################
+# You can serve images from routes also!!
+#######################################################
+
+# Make route to serve reddit image from server
+
+@app.route("/templates/2018_reddit.png")
+def reddit_image():
+    return send_file('static/images/2018_reddit.png', mimetype='image')
+
+# Route for data extraction page
 @app.route("/dataextraction")
 def dataextractions():
 
@@ -106,10 +100,15 @@ def dataextractions():
     return render_template('index.html')
 
 
+# Route for contact page
+
 @app.route("/contact")
 def contact():
 
     return render_template('index.html')
+
+
+# Route for API information
 
 @app.route("/api")
 def api_home():
@@ -119,9 +118,10 @@ def api_home():
         "/api/data<br/>"
         "/api/names<br/>"
         "/api/single_search"
-
-
     )
+
+
+# Route for API containing all data
 
 @app.route("/api/data")
 def data():
@@ -148,21 +148,21 @@ def names():
     return price_json
 
 
-    ###########################################
-    # Another way to display api through a session
-    #############################################
-    # # create our session from python to database
-    # session = Session(engine)
+###########################################
+# Another way to display api through a session
+#############################################
+# # create our session from python to database
+# session = Session(engine)
 
-    # # Query crypto currencies names and prices
-    # results = session.query(crypto_2018.name).all()
+# # Query crypto currencies names and prices
+# results = session.query(crypto_2018.name).all()
 
-    # all_names = list(np.ravel(results))
+# all_names = list(np.ravel(results))
 
-    # session.close()
+# session.close()
 
-    # print(all_names)
-    # return jsonify(all_names)
+# print(all_names)
+# return jsonify(all_names)
 
 # Route for searching
 @app.route("/api/single_search")
