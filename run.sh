@@ -1,1 +1,1 @@
-FLASK_APP=src/app.py flask run
+FLASK_APP=crypto/app.py flask run
