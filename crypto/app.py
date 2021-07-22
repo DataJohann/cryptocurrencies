@@ -4,6 +4,7 @@ import os
 from flask import Flask, render_template
 from flask import Flask, jsonify
 from flask.helpers import send_file
+from pandas.io.sql import SQLAlchemyRequired
 
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -27,8 +28,10 @@ import numpy as np
 app = Flask(__name__)
 
 # setup postgress connection
-
 rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or f'postgresql://{rds_connection_string}'
+
+
 engine = create_engine(f'postgresql://{rds_connection_string}')
 
 # Reflect an existing database into a new model
@@ -123,29 +126,29 @@ def api_home():
 
 # Route for API containing all data
 
-@app.route("/api/data")
-def data():
+# @app.route("/api/data")
+# def data():
 
 
     
-    price = pd.read_sql_query("select * from cleaned_2018_stats", con=engine)
+#     price = pd.read_sql_query("select * from cleaned_2018_stats", con=engine)
 
-    price_json = price.to_json(orient='records', double_precision=3, )
+#     price_json = price.to_json(orient='records', double_precision=3, )
     
-    return price_json
+#     return price_json
 
 
 # Provide api that gives all of the names of the cryptocurrencies in question
-@app.route("/api/names")
-def names():
+# @app.route("/api/names")
+# def names():
 
 
 
-    price = pd.read_sql_query("select name from cleaned_2018_stats", con=engine)
+#     price = pd.read_sql_query("select name from cleaned_2018_stats", con=engine)
 
-    price_json = price.to_json(orient='records', double_precision=3, )
+#     price_json = price.to_json(orient='records', double_precision=3, )
     
-    return price_json
+#     return price_json
 
 
 ###########################################
@@ -165,27 +168,27 @@ def names():
 # return jsonify(all_names)
 
 # Route for searching
-@app.route("/api/single_search")
-def data_by_name():
+# @app.route("/api/single_search")
+# def data_by_name():
 
 
-    crypto_to_search = input('What crypto currency would you like to search? ')
-    price = pd.read_sql_query(f"select * from cleaned_2018_stats where name like '{crypto_to_search}' ", con=engine)
+#     crypto_to_search = input('What crypto currency would you like to search? ')
+#     price = pd.read_sql_query(f"select * from cleaned_2018_stats where name like '{crypto_to_search}' ", con=engine)
 
-    price_json = price.to_json(orient='records', double_precision=3, )
+#     price_json = price.to_json(orient='records', double_precision=3, )
     
-    return price_json
+#     return price_json
 
-@app.route("/api/reddit")
-def reddit_api():
+# @app.route("/api/reddit")
+# def reddit_api():
 
 
     
-    result = pd.read_sql_query("select name, reddit_subscribers from cleaned_2018_stats", con=engine)
+#     result = pd.read_sql_query("select name, reddit_subscribers from cleaned_2018_stats", con=engine)
 
-    result_json = result.to_json(orient='records', double_precision=3, )
+#     result_json = result.to_json(orient='records', double_precision=3, )
     
-    return result_json
+#     return result_json
 
 
 if __name__ =="__main__":
