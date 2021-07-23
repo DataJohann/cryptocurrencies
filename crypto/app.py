@@ -18,7 +18,7 @@ from flask import Flask, request, send_from_directory
 
 import pandas as pd
 
-# from config import password
+from config import password
 
 import numpy as np
 
@@ -28,7 +28,7 @@ import numpy as np
 app = Flask(__name__)
 
 # setup postgress connection
-rds_connection_string = f'postgres:nicoselacome@localhost:5432/Cryptocurrencies'
+rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or f'postgresql://{rds_connection_string}'
 
