@@ -86,24 +86,70 @@
 
 
                 <h1>Exploring the relationship between social media activity and cryptocurrencies' price action</h1>
-                <p>This project looks at data from the top 2,500 cryptocurrencies, their reddit and twitter activity
+                <p>This is data from the top 2,500 cryptocurrencies, their reddit and twitter activity
                     as well as their Alexa rank in order to try to predict future price action
                 </p>
 
-                <p class="text-muted">This is another paragraph.</p>
+                <p class="text-muted">2018</p>
             </div>
         </div>
     </div>
 
-    <div class="containder">
+    <div class="container">
+        <!-- Images for dataset from 2018 -->
+
         <div class="row">
-            <div class="col">
+            <div class="col-6">
                 <a href="templates/2018_reddit.png">
                     <img src="{{ url_for('static', filename='images/2018_reddit.png') }}"class="img-fluid"> 
                 </a>
-                <a href="/api/reddit"> <p class="text-muted">See this dataset</p> </a>
+                <a href="/api/reddit"> <p class="text-muted">Reddit subscribers of top 90 cryptocurrencies</p> </a>
             </div>
-    </div>
+            <div class="col-6">
+                <a href="{{ url_for('static', filename='images/2018_twitter.png') }}">
+                    <img src="{{ url_for('static', filename='images/2018_twitter.png') }}"class="img-fluid"> 
+                </a>
+                <a href="/api/twitter"> <p class="text-muted">Twitter followers of top 90 cryptocurrencies</p> </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <a href="{ url_for('static', filename='images/2018_alexa_rank.png') }}">
+                    <img src="{{ url_for('static', filename='images/2018_alexa_rank.png') }}"class="img-fluid"> 
+                </a>
+                <a href="/api/reddit"> <p class="text-muted">Alexa rank for top 90 cryptocurrencies</p> </a>
+            </div>
+        </div>
+
+
+        <!-- Images for dataset from 2021 -->
+
+        <div class="row">
+            <p class="text-muted">2021</p>
+            <div class="col-6">
+                <a href="{{ url_for('static', filename='images/2021_reddit.png') }}">
+                    <img src="{{ url_for('static', filename='images/2021_reddit.png') }}"class="img-fluid"> 
+                </a>
+                <a href="/api/reddit"> <p class="text-muted">Reddit subscribers of top 90 cryptocurrencies</p> </a>
+            </div>
+
+            <div class="col-6">
+    
+                <a href="{{ url_for('static', filename='images/2021_twitter.png') }}">
+                    <img src="{{ url_for('static', filename='images/2021_twitter.png') }}"class="img-fluid"> 
+                </a>
+                <a href="/api/twitter"> <p class="text-muted">Twitter followers of top 90 cryptocurrencies</p> </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <a href="{{ url_for('static', filename='images/2021_alexa.png') }}">
+                    <img src="{{ url_for('static', filename='images/2021_alexa.png') }}"class="img-fluid"> 
+                </a>
+                <a href="/api/reddit"> <p class="text-muted">Alexa rank for top 90 cryptocurrencies</p> </a>
+            </div>
+        </div>
     
 <!-- "templates/2018_reddit.png" -->
 </body>
