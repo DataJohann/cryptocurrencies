@@ -19,9 +19,9 @@ d3.json(url).then(function(data) {
     alexa_y.push(data[i].alexa_rank)
     }
     
-    build_plot(crypto_names, reddit_y, 'reddit')
+    // build_plot(crypto_names, reddit_y, 'reddit')
     build_plot(crypto_names, twitter_y, 'twitter')
-    build_plot(crypto_names, alexa_y, 'alexa')
+    // build_plot(crypto_names, alexa_y, 'alexa')
 });
 
 function define_color(social_media){
@@ -34,7 +34,6 @@ function define_color(social_media){
     }
 }
 
-define_color('reddit');
 
 function build_plot(x_values, y_values, social){
 

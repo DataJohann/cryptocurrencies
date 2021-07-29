@@ -99,55 +99,37 @@
     </div>
 
     <div class="container">
-        <!-- Images for dataset from 2018 -->
+
+        <!-- Graphs for dataset from 2018 -->
 
         <div class="row">
             <div class="col-6">
 
                 <!-- Div for the first graph created with plotly -->
                 <div id="reddit-plot"></div>
-                <a href="/api/reddit"> <p class="text-muted">Reddit subscribers of top 90 cryptocurrencies</p> </a>
-                
-
+                <a href="/reddit"> <p class="text-muted">Reddit subscribers of top 90 cryptocurrencies</p> </a>
             </div>
 
-            <!-- <div class="col-6">
-                <a href="templates/2018_reddit.png">
-                    <img src="{{ url_for('static', filename='images/2018_reddit.png') }}"class="img-fluid"> 
-                </a>
-                <a href="/api/reddit"> <p class="text-muted">Reddit subscribers of top 90 cryptocurrencies</p> </a>
-            </div> -->
-            <!-- <div class="col-3">
-                <a href="{{ url_for('static', filename='images/2018_twitter.png') }}">
-                    <img src="{{ url_for('static', filename='images/2018_twitter.png') }}"class="img-fluid"> 
-                </a>
-                <a href="/api/twitter"> <p class="text-muted">Twitter followers of top 90 cryptocurrencies</p> </a>
-            </div> -->
 
             <div class="col-6">
 
                 <!-- Div for the first graph created with plotly -->
                 <div id="twitter-plot"></div>
-                <a href="/api/reddit"> <p class="text-muted">Reddit subscribers of top 90 cryptocurrencies</p> </a>
+                <a href="/twitter"> <p class="text-muted">Twitter Followers</p> </a>
                 
             </div>
         </div>
+
         <div class="row">
 
             <div class="col-6">
 
                 <!-- Div for the first graph created with plotly -->
                 <div id="alexa-plot"></div>
-                <a href="/api/reddit"> <p class="text-muted">Reddit subscribers of top 90 cryptocurrencies</p> </a>
+                <a href="/alexa"> <h6 class="text-muted">Alexa Rank </h6> </a>
                 
             </div>
 
-            <!-- <div class="col-6">
-                <a href="{ url_for('static', filename='images/2018_alexa_rank.png') }}">
-                    <img src="{{ url_for('static', filename='images/2018_alexa_rank.png') }}"class="img-fluid"> 
-                </a>
-                <a href="/api/reddit"> <p class="text-muted">Alexa rank for top 90 cryptocurrencies</p> </a>
-            </div> -->
         </div>
 
 
@@ -159,7 +141,7 @@
                 <a href="{{ url_for('static', filename='images/2021_reddit.png') }}">
                     <img src="{{ url_for('static', filename='images/2021_reddit.png') }}"class="img-fluid"> 
                 </a>
-                <a href="/api/reddit"> <p class="text-muted">Reddit subscribers of top 90 cryptocurrencies</p> </a>
+                <a href="/reddit"> <p class="text-muted">Reddit Subscribers</p> </a>
             </div>
 
             <div class="col-6">
@@ -167,7 +149,7 @@
                 <a href="{{ url_for('static', filename='images/2021_twitter.png') }}">
                     <img src="{{ url_for('static', filename='images/2021_twitter.png') }}"class="img-fluid"> 
                 </a>
-                <a href="/api/twitter"> <p class="text-muted">Twitter followers of top 90 cryptocurrencies</p> </a>
+                <a href="/twitter"> <p class="text-muted">Twitter Followers</p> </a>
             </div>
         </div>
 
@@ -176,7 +158,7 @@
                 <a href="{{ url_for('static', filename='images/2021_alexa.png') }}">
                     <img src="{{ url_for('static', filename='images/2021_alexa.png') }}"class="img-fluid"> 
                 </a>
-                <a href="/api/reddit"> <p class="text-muted">Alexa rank for top 90 cryptocurrencies</p> </a>
+                <a href="/alexa"> <p class="text-muted">Alexa Rank</p> </a>
             </div>
         </div>
     
@@ -186,6 +168,9 @@
 <!-- Bring in D3 -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>
+
+<!-- Connect plot js -->
 <script src="{{ url_for('static', filename='js/plot.js') }}"></script>
+
 </body>
 </html>
