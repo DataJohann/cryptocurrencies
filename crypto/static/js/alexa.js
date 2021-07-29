@@ -13,7 +13,12 @@ d3.json(url).then(function(data) {
 
     for (i = 0; i < data.length ; i++){
 
-    crypto_names.push(data[i].name)
+    
+    index = data[i].id + 1
+    token = data[i].name
+    combo = index.toString() + ' ' + token
+
+    crypto_names.push(combo)
     reddit_y.push(data[i].reddit_subscribers)
     twitter_y.push(data[i].twitter_followers)
     alexa_y.push(data[i].alexa_rank)
