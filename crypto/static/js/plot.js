@@ -1,4 +1,4 @@
-const url = "/api/data";
+const url = "/api/data/2018";
 
 console.log(d3.json(url))
 
