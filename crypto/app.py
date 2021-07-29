@@ -121,15 +121,29 @@ def api_home():
     return(
         "Welcome to the cryptocurrency social media API! <br/>"
         "Available routes: <br/>"
+        "/api/data/universal<br/>"
         "/api/data<br/>"
         "/api/names<br/>"
-        "/api/single_search"
+        "/api/single_search<br/>"
+        "/api/data/universal"
     )
 
 
 # Route for API containing all data
 
-@app.route("/api/data")
+@app.route("/api/data/universal")
+def uni():
+
+
+    
+    price = pd.read_sql_query("select * from universal_stats", con=engine)
+
+    price_json = price.to_json(orient='records', double_precision=3, )
+    
+    return price_json
+
+
+@app.route("/api/data/2018")
 def data():
 
 
@@ -142,6 +156,7 @@ def data():
 
 
 # Provide api that gives all of the names of the cryptocurrencies in question
+
 @app.route("/api/names")
 def names():
 
