@@ -10,6 +10,8 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
+
+
 # from flask.sqlalchemy import SQLAlchemy
 # db = SQLAlchemy
 
@@ -18,7 +20,7 @@ from flask import Flask, request, send_from_directory
 
 import pandas as pd
 
-# from config import password
+from config import password
 
 import numpy as np
 
@@ -28,7 +30,7 @@ import numpy as np
 app = Flask(__name__)
 
 # setup postgress connection
-# rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
+rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or f'postgresql://{rds_connection_string}'
 
@@ -94,9 +96,9 @@ def reddit():
 
 # Make route to serve reddit image from server
 
-@app.route("/templates/2018_reddit.png")
-def reddit_image():
-    return send_file('static/images/2018_reddit.png', mimetype='image')
+# @app.route("/templates/2018_reddit.png")
+# def reddit_image():
+#     return send_file('static/images/2018_reddit.png', mimetype='image')
 
 # Route for data extraction page
 @app.route("/dataextraction")
@@ -122,7 +124,8 @@ def api_home():
         "Welcome to the cryptocurrency social media API! <br/>"
         "Available routes: <br/>"
         "/api/data/universal<br/>"
-        "/api/data<br/>"
+        "/api/data/2018<br/>"
+        "/api/data/2021<br/>"
         "/api/names<br/>"
         "/api/single_search<br/>"
         "/api/data/universal"
@@ -130,6 +133,17 @@ def api_home():
 
 
 # Route for API containing all data
+
+@app.route("/api/data/bitcoin_historical")
+def bitcoin():
+
+    
+    price = pd.read_sql_query("select * from btc_community", con=engine)
+    
+
+    price_json = price.to_json(orient='records', double_precision=3, )
+    
+    return price_json
 
 @app.route("/api/data/universal")
 def uni():
