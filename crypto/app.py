@@ -138,8 +138,8 @@ def api_home():
 def bitcoin():
 
     
-    price = pd.read_sql_query("select * from btc_community", con=engine)
-    
+    price = pd.read_sql_query("select * from btc_community limit 100", con=engine)
+
 
     price_json = price.to_json(orient='records', double_precision=3, )
     
