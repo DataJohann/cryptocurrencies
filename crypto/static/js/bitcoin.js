@@ -15,15 +15,23 @@ d3.json(url_bitcoin).then(function (data){
     x = dates_x.reverse()
     y = reddit_y.reverse()
 
+
+    scatter_plot(x,y)
+
+})
+
+function scatter_plot(x, y){
+
     var trace = {
         x: x,
         y: y,
-        type: 'scatter'
+        type: 'scatter',
+        marker: {color: 'rgb(255,69,0)'}
     };
 
     var data = [trace]
 
-    Plotly.newPlot('reddit-plot2018', data)
+    Plotly.newPlot('token-reddit', data)
 
 
-})
+} 

@@ -86,14 +86,7 @@
     <div class="container">
         <h3 class="text-muted">Reddit Subscribers 2018 vs 2021</h3>
 
-        <div class="row">
-            <div class="col">
-                <div id="reddit-plot2018"></div>
-                <h3 class="dropdown-item-reddit">2018</h3>
-            </div>
-        </div>
-        
-    
+
         <div class="row">
             <div class="col">
 
@@ -103,12 +96,27 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col">
+                <div id="reddit-plot2018"></div>
+                <h3 class="dropdown-item-reddit">2018</h3>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <h2 class="muted-text">Bitcoin's Reddit Subscribers Timeline</h2>
+                <div id="token-reddit"></div>
+            </div>
+        </div>
     </div>
 
     <!-- Bring in D3 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>
 
     <!-- Connect local js -->
-    <!-- <script src="{{ url_for('static', filename='js/reddit.js') }}"></script> -->
-    <script src="{{ url_for('static', filename='js/bitcoin.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/reddit.js') }}"></script>
+
+    <!-- Script to practice pulling data -->
+    <!-- <script src="{{ url_for('static', filename='js/bitcoin.js') }}"></script> -->
 </body>
