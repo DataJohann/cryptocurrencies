@@ -35,30 +35,30 @@
 
 -- drop TABLE bitcoin_four_years_data;
 
--- create table bitcoin_four_years_data(
--- 	id serial primary key,
--- 	date varchar, 
--- 	name varchar, 
--- 	symbol varchar, 
--- 	name_2 varchar, 
--- 	localization JSONB, 
--- 	image JSONB, 
--- 	market_data JSONB,
--- 	community_data JSONB, 
--- 	developer_data JSONB,
--- 	public_interest_stats JSONB
--- )
-
-CREATE TABLE btc_community(
-
+create table bitcoin_four_years_data(
 	id serial primary key,
-	date varchar,
-	name varchar,
-	facebook_likes float,
-	twitter_followers float,
-	reddit_average_posts_48h float,	
-	reddit_average_comments_48h float,	
-	reddit_subscribers float,	
-	reddit_accounts_active_48h float
-
+	date varchar, 
+	name varchar, 
+	symbol varchar, 
+	name_2 varchar, 
+	localization json, 
+	image JSONB, 
+	market_data JSONB,
+	community_data JSONB, 
+	developer_data JSONB,
+	public_interest_stats JSONB
 )
+
+-- CREATE TABLE btc_community(
+
+-- 	id serial primary key,
+-- 	date varchar,
+-- 	name varchar,
+-- 	facebook_likes float,
+-- 	twitter_followers float,
+-- 	reddit_average_posts_48h float,	
+-- 	reddit_average_comments_48h float,	
+-- 	reddit_subscribers float,	
+-- 	reddit_accounts_active_48h float
+
+-- )

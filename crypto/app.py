@@ -173,7 +173,7 @@ def data_2021():
 
 
     
-    price = pd.read_sql_query("select * from cleaned_2021_stats", con=engine)
+    price = pd.read_sql_query("select * from cleaned_2021_stats limit 89", con=engine)
 
     price_json = price.to_json(orient='records', double_precision=3, )
     
