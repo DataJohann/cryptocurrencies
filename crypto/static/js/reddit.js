@@ -15,6 +15,8 @@ d3.json(url_2018).then(function(data) {
 
     index = data[i].id + 1
     token = data[i].name
+
+    // Adds index to the name of the cryptocurrency
     combo = index.toString() + ' ' + token
 
     crypto_names.push(combo)
