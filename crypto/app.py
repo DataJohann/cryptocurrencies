@@ -1,5 +1,8 @@
 # import dependencies 
 import os
+import datetime
+import requests
+import numpy as np
 
 from flask import Flask, render_template
 from flask import Flask, jsonify
@@ -19,11 +22,13 @@ from flask import Flask, request, send_from_directory
 
 
 import pandas as pd
+from sqlalchemy.sql.functions import user
 
 from config import password
 
 import numpy as np
 
+from crypto.update_db import master_database_updating_app_bitcoin_only
 
 # Flask app set up
 
@@ -72,6 +77,16 @@ def alexa():
 
     return render_template('Alexa_Rank.html')
 
+@app.route("/update_db")
+def update_db():
+    
+    user = input("What's your username?")
+    
+    if (user == 'johann'):
+        master_database_updating_app_bitcoin_only('bitcoin_four_years_data')
+
+
+    return 'success'
 
 # Route for twitter data page
 
