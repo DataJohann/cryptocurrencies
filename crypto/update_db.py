@@ -166,4 +166,4 @@ def master_database_updating_app_bitcoin_only(table_name):
         session.close()
 
         
-    print("SUCCESS!")
+    return "SUCCESS!"
