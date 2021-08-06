@@ -17,17 +17,16 @@ from flask import Flask
 
 app = Flask(__name__)
 
+## Connect to local database
+
 rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
 
 connection_string = f'postgresql://{rds_connection_string}'
+
 ## Save this line for production connection to heroku database
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or  connection_string
-
-## Connect to local database
-
-
 
 
 ## Create engine using the connection string to the database
