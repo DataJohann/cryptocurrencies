@@ -80,8 +80,8 @@ def alexa():
 @app.route("/update_db")
 def update_db():
     
-    user = input("What's your username?")
-    status = ''
+    # user = input("What's your username?")
+    status = 'fixed'
     
     # if (user == 'johann'):
     #     master_database_updating_app_bitcoin_only('bitcoin_four_years_data')
