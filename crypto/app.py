@@ -84,7 +84,7 @@ def update_db():
     status = 'fixed'
     
     # if (user == 'johann'):
-    #     master_database_updating_app_bitcoin_only('bitcoin_four_years_data')
+    master_database_updating_app_bitcoin_only('bitcoin_four_years_data')
     #     status = "Success!"
     # else:
     #     status = 'Invalid Username'
