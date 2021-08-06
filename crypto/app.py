@@ -83,11 +83,11 @@ def update_db():
     user = input("What's your username?")
     status = ''
     
-    if (user == 'johann'):
-        master_database_updating_app_bitcoin_only('bitcoin_four_years_data')
-        status = "Success!"
-    else:
-        status = 'Invalid Username'
+    # if (user == 'johann'):
+    #     master_database_updating_app_bitcoin_only('bitcoin_four_years_data')
+    #     status = "Success!"
+    # else:
+    #     status = 'Invalid Username'
 
 
     return status
