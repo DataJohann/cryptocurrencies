@@ -138,7 +138,7 @@ def api_home():
 def bitcoin():
 
     
-    result = pd.read_sql_query("select  id, dt::varchar, name, twitter_followers, reddit_average_comments_48h, reddit_subscribers, reddit_accounts_active_48h from btc_community", con=engine)
+    result = pd.read_sql_query("select  id, dt::varchar, name, twitter_followers, reddit_average_comments_48h, reddit_subscribers, reddit_accounts_active_48h from btc_community order by dt desc;", con=engine)
 
 
     result_json = result.to_json(orient='records', double_precision=3, )
