@@ -85,16 +85,18 @@ d3.json(url_bitcoin).then(function (data){
     dates_x = []
     reddit_y = []
     for (i=0; i < data.length; i++ ){
-        dates_x.push(data[i].date)
+        dates_x.push(data[i].dt)
         reddit_y.push(data[i].reddit_subscribers)
 
     }
 
     // Reverse lists 
+    console.log(dates_x)
+    
 
     x = dates_x.reverse()
     y = reddit_y.reverse()
-
+    console.log(x)
 
     scatter_plot(x,y)
 

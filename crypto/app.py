@@ -1,5 +1,8 @@
 # import dependencies 
 import os
+import datetime
+import requests
+import numpy as np
 
 from flask import Flask, render_template
 from flask import Flask, jsonify
@@ -7,7 +10,7 @@ from flask.helpers import send_file
 from pandas.io.sql import SQLAlchemyRequired
 
 from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, query_expression
 from sqlalchemy import create_engine, func
 
 
@@ -19,11 +22,13 @@ from flask import Flask, request, send_from_directory
 
 
 import pandas as pd
+from sqlalchemy.sql.functions import user
 
 # from config import password
 
 import numpy as np
 
+from crypto.update_db import master_database_updating_app_bitcoin_only
 
 # Flask app set up
 
@@ -72,6 +77,20 @@ def alexa():
 
     return render_template('Alexa_Rank.html')
 
+@app.route("/update_db")
+def update_db():
+    
+    user = input("What's your username?")
+    status = ''
+    
+    if (user == 'johann'):
+        master_database_updating_app_bitcoin_only('bitcoin_four_years_data')
+        status = "Success!"
+    else:
+        status = 'Invalid Username'
+
+
+    return status
 
 # Route for twitter data page
 
@@ -138,12 +157,12 @@ def api_home():
 def bitcoin():
 
     
-    price = pd.read_sql_query("select * from btc_community", con=engine)
+    result = pd.read_sql_query("select  id, dt::varchar, name, twitter_followers, reddit_average_comments_48h, reddit_subscribers, reddit_accounts_active_48h from btc_community order by dt desc;", con=engine)
 
 
-    price_json = price.to_json(orient='records', double_precision=3, )
+    result_json = result.to_json(orient='records', double_precision=3, )
     
-    return price_json
+    return result_json
 
 @app.route("/api/data/universal")
 def uni():
