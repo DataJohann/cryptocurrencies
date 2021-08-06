@@ -13,6 +13,9 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session, query_expression
 from sqlalchemy import create_engine, func
 
+import time
+import schedule
+
 
 
 # from flask.sqlalchemy import SQLAlchemy
@@ -24,10 +27,12 @@ from flask import Flask, request, send_from_directory
 import pandas as pd
 from sqlalchemy.sql.functions import user
 
+#Import password for postgres
 # from config import password
 
 import numpy as np
 
+#Import database updating app
 from crypto.update_db import master_database_updating_app_bitcoin_only
 
 # Flask app set up
@@ -55,6 +60,9 @@ Base.prepare(engine, reflect=True)
 # Save a reference to the cleaned table
 crypto_2018 = Base.classes.cleaned_2018_stats
 
+# Schedule database to be uploaded everyday at midnight
+
+schedule.every().day.at("00:00").do(master_database_updating_app_bitcoin_only, 'bitcoin_four_years_data')
 
 @app.route("/")
 def index():
@@ -80,16 +88,6 @@ def alexa():
 @app.route("/update_db")
 def update_db():
     
-    # user = input("What's your username?")
-    status = 'fixed'
-    
-    # if (user == 'johann'):
-    
-    #     status = "Success!"
-    # else:
-    #     status = 'Invalid Username'
-
-
     return master_database_updating_app_bitcoin_only('bitcoin_four_years_data')
 
 # Route for twitter data page
