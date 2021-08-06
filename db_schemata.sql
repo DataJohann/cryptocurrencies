@@ -55,19 +55,19 @@
 -- 	public_interest_stats varchar
 -- )
 
-CREATE TABLE btc_community(
+-- CREATE TABLE btc_community(
 
-	id serial primary key,
-	dt date,
-	name varchar,
-	facebook_likes float,
-	twitter_followers float,
-	reddit_average_posts_48h float,	
-	reddit_average_comments_48h float,	
-	reddit_subscribers float,	
-	reddit_accounts_active_48h float
+-- 	id serial primary key,
+-- 	dt date,
+-- 	name varchar,
+-- 	facebook_likes float,
+-- 	twitter_followers float,
+-- 	reddit_average_posts_48h float,	
+-- 	reddit_average_comments_48h float,	
+-- 	reddit_subscribers float,	
+-- 	reddit_accounts_active_48h float
 
-)
+-- )
 
 
 
@@ -92,20 +92,6 @@ CREATE TABLE btc_community(
 -- values ('30-07-2021', 'bitcoin', 'btc', 'Bitcoin', 'something', 'something2', 'something3' );
 
 -- set datestyle = 'ISO, DMY';
-
--- create table adding_bitcoin(
--- 	id serial,
--- 	dt date, 
--- 	name varchar, 
--- 	symbol varchar, 
--- 	name_2 varchar, 
--- 	localization varchar, 
--- 	image varchar, 
--- 	market_data varchar,
--- 	community_data varchar, 
--- 	developer_data varchar,
--- 	public_interest_stats varchar
--- )
 
 
 -- \i ‘/Users/johannvillalvir/cryptocurrencies/db_schemata.sql’

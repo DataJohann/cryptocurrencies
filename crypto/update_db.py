@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
+
 from config import password
+
 import os
 import pandas as pd
 from sqlalchemy.ext.automap import automap_base
@@ -26,12 +28,12 @@ connection_string = f'postgresql://{rds_connection_string}'
 ## Save this line for production connection to heroku database
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or  connection_string
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or  f'postgresql://{rds_connection_string}'
 
 
 ## Create engine using the connection string to the database
 
-engine = create_engine(connection_string)
+engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 
 # Reflect an existing database into a new model
 
