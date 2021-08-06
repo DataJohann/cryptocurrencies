@@ -91,12 +91,8 @@ d3.json(url_bitcoin).then(function (data){
     }
 
     // Reverse lists 
-    console.log(dates_x)
-    
-
     x = dates_x.reverse()
     y = reddit_y.reverse()
-    console.log(x)
 
     scatter_plot(x,y)
 
