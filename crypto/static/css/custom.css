@@ -12,12 +12,12 @@
 }
 
 .btn-success:hover{
-    background-color: rgb(138, 223, 218);
+    background-color: #4E75F3; /*rgb(138, 223, 218);*/
     border-color: unset;
 }
 
 .btn-success:focus{
-    background-color:rgb(138, 223, 218) ;
+    background-color: #6699FF; /*rgb(138, 223, 218) ;*/
 }
 
 .nav-link:active{
