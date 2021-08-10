@@ -2,8 +2,11 @@
 
 <html lang="en">
 <meta charset="UTF-8">
+
+
 <head>
-    <title>Social Media + Cryptocurrencies</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <title>Community Activity Tracker for Cryptocurrencies</title>
 
     <!-- Bootstrap CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +21,8 @@
     <!-- Custom CSS -->
 
     <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='css/custom.css') }}">
-
+    <!-- Meta to verify ownership to google -->
+<meta name="google-site-verification" content="sMyLSkiyj480m-2Sgp8Hxa8Nc2kU1x02q71cSltJhaM" />
 </head>
 <body>
 
@@ -27,19 +31,20 @@
     <!-- Start of Nav bar -->
         
 
-        <div class="container">
+        <div class="container-fluid">
 
             <div class="row">
-                <div class="col">
+                <div class="col-4">
                     <a class="container" href="/">
-                        <button type="button" class="btn btn-success">JV Intel</button>
+                        <img src="{{ url_for('static', filename='images/logo.png')}}" class="img-fluid-icon">
+                        <!-- <button type="button" class="btn btn-success">Cryptolytics</button> -->
                     </a>
                 </div>
 
-                <div class="col">
+                <div class="col-4">
                 </div>
                 
-                <div class="col">
+                <div class="col-4">
                     <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #fdfdfd;">
             
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,17 +88,18 @@
     </header>
 
     <!-- <img src="img_la.jpg" alt="LA" style="width:100%"> -->
-    <div class="container">
+    <div class="container container-top">
         <div class="row">
             <div class="col">
-
-
-                <h1>Exploring the relationship between social media activity and cryptocurrencies' price action</h1>
-                <p>This is data from the top 2,500 cryptocurrencies, their reddit and twitter activity
-                    as well as their Alexa rank in order to try to predict future price action
+                <h2>Social media activity for top 100 cryptocurrencies </h2>
+                <p class="text-muted">Data from the top 100 cryptocurrencies, their reddit and twitter activity
+                    as well as their Alexa Rank
                 </p>
-
-                <p class="text-muted">2018</p>
+                <div class="well">
+                    <h5>Cryptocurrency</h5>
+                    <select id="selDataset" onchange="optionChanged(this.value)"></select>
+                  </div>
+                <!-- <h3 class="text-muted">2018</h3> -->
             </div>
         </div>
     </div>
@@ -103,19 +109,23 @@
         <!-- Graphs for dataset from 2018 -->
 
         <div class="row">
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
             <div class="col-6">
 
                 <!-- Div for the first graph created with plotly -->
-                <div id="reddit-plot"></div>
-                <a href="/reddit"> <p class="text-muted">Reddit subscribers of top 90 cryptocurrencies</p> </a>
+                <div id="reddit-plot2018" alt="Reddit Subscribers count for top cryptocurrencies in 2018"></div>
+                <a href="/reddit"> <p class="text-muted text-muted-link">Reddit Subscribers</p> </a>
             </div>
 
 
             <div class="col-6">
 
                 <!-- Div for the first graph created with plotly -->
-                <div id="twitter-plot"></div>
-                <a href="/twitter"> <p class="text-muted">Twitter Followers</p> </a>
+                <div id="twitter-plot2018" alt="Twitter followers count for top cryptocurrencies in 2018"></div>
+                <a href="/twitter"> <p class="text-muted text-muted-link">Twitter Followers</p> </a>
                 
             </div>
         </div>
@@ -125,42 +135,68 @@
             <div class="col-6">
 
                 <!-- Div for the first graph created with plotly -->
-                <div id="alexa-plot"></div>
-                <a href="/alexa"> <h6 class="text-muted">Alexa Rank </h6> </a>
+                <div id="alexa-plot2018" alt="Alexa Rank for top cryptocurrencies in 2018"></div>
+                <a href="/alexa"> <h6 class="text-muted text-muted-link">Alexa Rank </h6> </a>
                 
             </div>
 
         </div>
+    </div>
 
+        <hr>
+        <!-- Graphs for dataset from 2021 -->
 
-        <!-- Images for dataset from 2021 -->
-
-        <div class="row">
-            <p class="text-muted">2021</p>
-            <div class="col-6">
-                <a href="{{ url_for('static', filename='images/2021_reddit.png') }}">
-                    <img src="{{ url_for('static', filename='images/2021_reddit.png') }}"class="img-fluid"> 
-                </a>
-                <a href="/reddit"> <p class="text-muted">Reddit Subscribers</p> </a>
-            </div>
-
-            <div class="col-6">
     
-                <a href="{{ url_for('static', filename='images/2021_twitter.png') }}">
-                    <img src="{{ url_for('static', filename='images/2021_twitter.png') }}"class="img-fluid"> 
-                </a>
-                <a href="/twitter"> <p class="text-muted">Twitter Followers</p> </a>
+
+    <div class="container">
+    
+        <h3 class="text-muted">2021</h3>
+    
+        <div class="row">
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+
+                <!-- Div for the first graph created with plotly -->
+                <div id="reddit-plot2021" alt="Reddit Subscribers count for top cryptocurrencies in 2021"></div>
+                <a href="/reddit"> <p class="text-muted text-muted-link">Reddit Subscribers</p> </a>
+            </div>
+
+
+            <div class="col-6">
+
+                <!-- Div for the first graph created with plotly -->
+                <div id="twitter-plot2021" alt="Twitter followers count for top cryptocurrencies in 2021"></div>
+                <a href="/twitter"> <p class="text-muted text-muted-link">Twitter Followers</p> </a>
+                
             </div>
         </div>
 
         <div class="row">
+
+            <div class="col-6">
+
+                <!-- Div for the first graph created with plotly -->
+                <div id="alexa-plot2021" alt="Alexa Rank for different cryptocurrencies in 2021"></div>
+                <a href="/alexa"> <h6 class="text-muted text-muted-link">Alexa Rank </h6> </a>
+                
+            </div>
+
+        </div>
+
+    </div>
+        <!-- Save this as example on how to bring an image using flask -->
+
+        <!-- <div class="row">
             <div class="col-6">
                 <a href="{{ url_for('static', filename='images/2021_alexa.png') }}">
                     <img src="{{ url_for('static', filename='images/2021_alexa.png') }}"class="img-fluid"> 
                 </a>
                 <a href="/alexa"> <p class="text-muted">Alexa Rank</p> </a>
             </div>
-        </div>
+        </div> -->
     
 
 
@@ -171,6 +207,7 @@
 
 <!-- Connect plot js -->
 <script src="{{ url_for('static', filename='js/plot.js') }}"></script>
+<!-- <script src="{{ url_for('static', filename='js/bitcoin.js') }}"></script> -->
 
 </body>
 </html>

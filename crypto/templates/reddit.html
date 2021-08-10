@@ -3,7 +3,9 @@
 <html lang="en">
 <meta charset="UTF-8">
 <head>
-    <title>Social Media + Cryptocurrencies</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+
+    <title>Reddit Subscribers Chart per Cryptocurrency</title>
 
     <!-- Bootstrap CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,19 +29,20 @@
     <!-- Start of Nav bar -->
         
 
-        <div class="container">
+        <div class="container-fluid">
 
             <div class="row">
-                <div class="col">
+                <div class="col-4">
                     <a class="container" href="/">
-                        <button type="button" class="btn btn-success">JV Intel</button>
+                        <img src="{{ url_for('static', filename='images/logo.png')}}" class="img-fluid-icon">
+                        <!-- <button type="button" class="btn btn-success">Cryptolytics</button> -->
                     </a>
                 </div>
 
-                <div class="col">
+                <div class="col-4">
                 </div>
                 
-                <div class="col">
+                <div class="col-4">
                     <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #fdfdfd;">
             
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,15 +85,33 @@
 
     </header>
 
-
-    <div class="container-fluid">
-
-        <div class='row'>
-            <div class='col'>
-                <div id="reddit-plot"></div>
+    
+    <div class="container container-top">
+        <div class="row">
+            <div class="col">
+                <h2 class="muted-text">Bitcoin's Reddit Subscribers Timeline</h2>
+                <div id="token-reddit"></div>
             </div>
         </div>
-        
+
+        <h3 class="text-muted">Reddit Subscribers 2021 vs 2018</h3>
+
+
+        <div class="row">
+            <div class="col">
+
+                <!-- Div for the first graph created with plotly -->
+                <div id="reddit-plot2021"></div>
+                <h3 class="dropdown-item-reddit">2021</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div id="reddit-plot2018"></div>
+                <h3 class="dropdown-item-reddit">2018</h3>
+            </div>
+        </div>
         
     </div>
 
@@ -99,4 +120,7 @@
 
     <!-- Connect local js -->
     <script src="{{ url_for('static', filename='js/reddit.js') }}"></script>
+
+    <!-- Script to practice pulling data -->
+    <!-- <script src="{{ url_for('static', filename='js/bitcoin.js') }}"></script> -->
 </body>

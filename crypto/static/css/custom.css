@@ -4,7 +4,7 @@
 
 
 .btn-success{
-    background-color: rgb(94, 184, 176);
+    background-color: #2956E9 /*rgb(94, 184, 176);*/;
     border-radius: 0%;
     border-color:unset;
     padding: 1rem;
@@ -12,12 +12,12 @@
 }
 
 .btn-success:hover{
-    background-color: rgb(138, 223, 218);
+    background-color: #4E75F3; /*rgb(138, 223, 218);*/
     border-color: unset;
 }
 
 .btn-success:focus{
-    background-color:rgb(138, 223, 218) ;
+    background-color: #6699FF; /*rgb(138, 223, 218) ;*/
 }
 
 .nav-link:active{
@@ -34,4 +34,25 @@
 
 .dropdown-item-alexa{
     color: rgb(55, 71, 90);
+}
+
+.img-fluid-icon{
+    width: 7%;
+    position: absolute;
+    top: 5px;
+    background-color: #53ABBD;/* bisque ;*/
+    padding: 4px;
+    border-bottom-left-radius: 1vh;
+    border-bottom-right-radius: 1vh;
+    border-top-right-radius: 1vh;
+    border-top-left-radius: 1vh;
+}
+
+.container-top {
+    padding-top: 10vh;
+}
+
+.text-muted-link{
+    padding-top: 5vh;
+    padding-left: 35vh;
 }
