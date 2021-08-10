@@ -153,6 +153,7 @@ function init() {
 
 function optionChanged(newToken){
     
+    console.log(newToken)
     build_2018_charts(newToken)
 }
 
