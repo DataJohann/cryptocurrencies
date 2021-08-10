@@ -56,3 +56,16 @@
     padding-top: 5vh;
     padding-left: 35vh;
 }
+
+a{
+    text-decoration: none;
+}
+
+.p-header{
+    margin-left: 40pt;
+    margin-top: 50pt;
+}
+
+.last-row{
+    padding-bottom: 60pt;
+}
