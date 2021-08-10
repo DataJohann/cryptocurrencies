@@ -17,7 +17,6 @@ function build_2018_charts(token){
         // 
         resultArray == 0 ? data = data : data = resultArray;
 
-        console.log(token)
         // Make empty arrays to hold x and y values
         var crypto_names = []
         var reddit_y = []
@@ -36,9 +35,6 @@ function build_2018_charts(token){
         twitter_y.push(data[i].twitter_followers)
         alexa_y.push(data[i].alexa_rank)
         
-        // selector.append("option")
-        //     .text(token)
-        //     .property("value", token)
         }
 
         build_plot(crypto_names, reddit_y, 'reddit', year)
@@ -47,40 +43,49 @@ function build_2018_charts(token){
     });
 };
 
-// build_2018_charts()
+
 // pull data from 2021
 
-// Build plots for year 2021
+// Prepare data to build charts for 2021
 
-const url_2021 = "/api/data/2021";
-d3.json(url_2021).then(function(data) {
+function build_2021_charts(token){
 
-    // Make empty arrays to hold x and y values
-    var crypto_names = []
-    var reddit_y = []
-    var twitter_y = []
-    var alexa_y = []
-    var year = '2021'
+    const url_2021 = "/api/data/2021";
+   d3.json(url_2021).then(function(data) {
 
-    for (i = 0; i < data.length ; i++){
+        //  Create an array with the data for the selected token
+        var resultArray = data.filter(tokenObj => tokenObj.name == token);
 
-    index = data[i].id + 1
-    token = data[i].name
-    combo = index.toString() + ' ' + token
+        //  Check to see if the result array has no results, if so, it means user wants to see all tokens in graph
+        // 
+        resultArray == 0 ? data = data : data = resultArray; 
 
-    crypto_names.push(combo)
-    reddit_y.push(data[i].reddit_subscribers)
-    twitter_y.push(data[i].twitter_followers)
-    alexa_y.push(data[i].alexa_rank)
-  
-    }
+        // Make empty arrays to hold x and y values
+        var crypto_names = []
+        var reddit_y = []
+        var twitter_y = []
+        var alexa_y = []
+        var year = '2021'
 
+        for (i = 0; i < data.length ; i++){
+
+        index = data[i].id + 1
+        token = data[i].name
+        combo = index.toString() + ' ' + token
+
+        crypto_names.push(combo)
+        reddit_y.push(data[i].reddit_subscribers)
+        twitter_y.push(data[i].twitter_followers)
+        alexa_y.push(data[i].alexa_rank)
     
-    build_plot(crypto_names, reddit_y, 'reddit', year)
-    build_plot(crypto_names, twitter_y, 'twitter', year)
-    build_plot(crypto_names, alexa_y, 'alexa', year)
-});
+        }
 
+        
+        build_plot(crypto_names, reddit_y, 'reddit', year)
+        build_plot(crypto_names, twitter_y, 'twitter', year)
+        build_plot(crypto_names, alexa_y, 'alexa', year)
+    });
+};
 function define_color(social_media){
     if (social_media == 'reddit'){
         return 'rgb(255,69,0)'
@@ -135,17 +140,20 @@ function init() {
     //       .text(sample.name)
     //       .property("value", sample);
     //   });
-      
+    selector
+    .append("option")
+    .text("All")
       Object.entries(data).forEach(([key, value]) =>{
           selector
             .append("option")
             .text(value.name)
             .property("value", value.name)
       })
-
-      // Use the first sample from the list to build the initial plots
+     
+    
     build_2018_charts();
-    //   buildMetadata(firstSample);
+    build_2021_charts();
+
     });
   }
 
@@ -153,8 +161,8 @@ function init() {
 
 function optionChanged(newToken){
     
-    console.log(newToken)
     build_2018_charts(newToken)
+    build_2021_charts(newToken)
 }
 
 init()
