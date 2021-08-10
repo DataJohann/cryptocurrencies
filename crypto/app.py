@@ -27,8 +27,11 @@ from flask import Flask, request, send_from_directory
 import pandas as pd
 from sqlalchemy.sql.functions import user
 
-#Import password for postgres
+# #Import password for postgres
 # from config import password
+
+# # setup local postgress connection
+# rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
 
 import numpy as np
 
@@ -39,8 +42,7 @@ from crypto.update_db import master_database_updating_app_bitcoin_only
 
 app = Flask(__name__)
 
-# setup postgress connection
-# rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or f'postgresql://{rds_connection_string}'
 

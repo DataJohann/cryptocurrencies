@@ -98,97 +98,83 @@
                     as well as their Alexa Rank
                 </p>
                 <div class="well">
-                    <h5>Cryptocurrency</h5>
                     <select id="selDataset" onchange="optionChanged(this.value)"></select>
                   </div>
-                <h3 class="text-muted">2018</h3>
+                
             </div>
         </div>
     </div>
 
     <div class="container">
 
-        <!-- Graphs for dataset from 2018 -->
+        <!-- Graphs for dataset for reddit-->
 
         <div class="row">
-            <div class="col"></div>
-        </div>
 
-        <div class="row">
+            <a href="/reddit"> <h3 class="p-header dropdown-item-reddit">Reddit Subscribers</h3> </a>
+
             <div class="col-6">
-
                 <!-- Div for the first graph created with plotly -->
+                <h3 class="text-muted text-muted-link">2018</h3>
                 <div id="reddit-plot2018" alt="Reddit Subscribers count for top cryptocurrencies in 2018"></div>
-                <a href="/reddit"> <p class="text-muted text-muted-link">Reddit Subscribers</p> </a>
+                
             </div>
 
+            <div class="col-6">
+                <!-- Div for the first graph created with plotly -->
+                <h3 class="text-muted text-muted-link">2021</h3>
+                <div id="reddit-plot2021" alt="Reddit Subscribers count for top cryptocurrencies in 2021"></div>
+                <!-- <a href="/reddit"> <p class="text-muted text-muted-link">Reddit Subscribers</p> </a> -->
+            </div>
+
+        </div>
+
+        <!-- Graphs for twitter followers -->
+        
+        <div class="row">
+
+            <a href="/twitter"> <h3 class="p-header dropdown-item-twitter">Twitter Followers</h3> </a>
 
             <div class="col-6">
 
                 <!-- Div for the first graph created with plotly -->
                 <div id="twitter-plot2018" alt="Twitter followers count for top cryptocurrencies in 2018"></div>
-                <a href="/twitter"> <p class="text-muted text-muted-link">Twitter Followers</p> </a>
+                <!-- <a href="/twitter"> <p class="text-muted text-muted-link">Twitter Followers</p> </a> -->
                 
             </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-6">
-
-                <!-- Div for the first graph created with plotly -->
-                <div id="alexa-plot2018" alt="Alexa Rank for top cryptocurrencies in 2018"></div>
-                <a href="/alexa"> <h6 class="text-muted text-muted-link">Alexa Rank </h6> </a>
-                
-            </div>
-
-        </div>
-    </div>
-
-        <hr>
-        <!-- Graphs for dataset from 2021 -->
-
-    
-
-    <div class="container">
-    
-        <h3 class="text-muted">2021</h3>
-    
-        <div class="row">
-            <div class="col"></div>
-        </div>
-
-        <div class="row">
-            <div class="col-6">
-
-                <!-- Div for the first graph created with plotly -->
-                <div id="reddit-plot2021" alt="Reddit Subscribers count for top cryptocurrencies in 2021"></div>
-                <a href="/reddit"> <p class="text-muted text-muted-link">Reddit Subscribers</p> </a>
-            </div>
-
 
             <div class="col-6">
 
                 <!-- Div for the first graph created with plotly -->
                 <div id="twitter-plot2021" alt="Twitter followers count for top cryptocurrencies in 2021"></div>
-                <a href="/twitter"> <p class="text-muted text-muted-link">Twitter Followers</p> </a>
+                <!-- <a href="/twitter"> <p class="text-muted text-muted-link">Twitter Followers</p> </a> -->
                 
             </div>
-        </div>
 
+        </div>
         <div class="row">
+
+            <a href="/alexa"> <h3 class="p-header dropdown-item-alexa">Alexa Rank</h3> </a>
 
             <div class="col-6">
 
                 <!-- Div for the first graph created with plotly -->
+                <div id="alexa-plot2018" alt="Alexa Rank for top cryptocurrencies in 2018"></div>
+                <!-- <a href="/alexa"> <h6 class="text-muted text-muted-link">Alexa Rank </h6> </a> -->
+                
+            </div>
+
+            <div class="col-6 last-row">
+
+                <!-- Div for the first graph created with plotly -->
                 <div id="alexa-plot2021" alt="Alexa Rank for different cryptocurrencies in 2021"></div>
-                <a href="/alexa"> <h6 class="text-muted text-muted-link">Alexa Rank </h6> </a>
+                <!-- <a href="/alexa"> <h6 class="text-muted text-muted-link">Alexa Rank </h6> </a> -->
                 
             </div>
 
         </div>
-
     </div>
+
         <!-- Save this as example on how to bring an image using flask -->
 
         <!-- <div class="row">

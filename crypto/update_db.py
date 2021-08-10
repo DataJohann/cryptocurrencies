@@ -1,7 +1,6 @@
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
-# from config import password
 
 import os
 import pandas as pd
@@ -20,10 +19,10 @@ from flask import Flask
 app = Flask(__name__)
 
 ## Connect to local database
+# from config import password
 
 # rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
 
-# connection_string = f'postgresql://{rds_connection_string}'
 
 ## Save this line for production connection to heroku database
 
