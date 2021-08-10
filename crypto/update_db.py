@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
-from config import password
+# from config import password
 
 import os
 import pandas as pd
@@ -21,7 +21,7 @@ app = Flask(__name__)
 
 ## Connect to local database
 
-rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
+# rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
 
 # connection_string = f'postgresql://{rds_connection_string}'
 
