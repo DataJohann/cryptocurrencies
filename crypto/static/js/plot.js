@@ -44,6 +44,7 @@ function build_2021_charts(token, year_a, year_b){
         reddit_max_a = Math.max.apply(Math, reddit_y)
         twitter_max_a = Math.max.apply(Math, twitter_y)
         alexa_max_a = Math.max.apply(Math, alexa_y)
+        
 
         const url_b = `/api/data/${year_b}`;
         d3.json(url_b).then(function(data) {
@@ -78,6 +79,7 @@ function build_2021_charts(token, year_a, year_b){
             reddit_max_b = Math.max.apply(Math, reddit_y_b)
             twitter_max_b = Math.max.apply(Math, twitter_y_b)
             alexa_max_b = Math.max.apply(Math, alexa_y_b)
+            alexa_min_b = Math.min.apply(Math, alexa_y_b)
 
             // Compare values for both years
 
@@ -130,13 +132,23 @@ function build_plot(x_values, y_values, social, year, y_max){
     var layout = {
         yaxis: {
             side: 'left',
-            range: [0, y_max]
+            range: alexa_plot(social, y_max)
         }
       };
 
     Plotly.newPlot(`${social}-plot${year}`, data, layout);
 
 };
+
+//  Function to invert chart if it's alexa rank
+
+function alexa_plot(social, y_max){
+    if (social == 'alexa') {
+        return [y_max, 0]
+    } else {
+        return [0, y_max]
+    }
+}
 
 // Function to define the color of the chart
 function define_color(social_media){
