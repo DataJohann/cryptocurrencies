@@ -27,11 +27,11 @@ from flask import Flask, request, send_from_directory
 import pandas as pd
 from sqlalchemy.sql.functions import user
 
-#Import password for postgres
-from config import password
+# #Import password for postgres
+# from config import password
 
-# setup local postgress connection
-rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
+# # setup local postgress connection
+# rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
 
 import numpy as np
 

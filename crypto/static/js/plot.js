@@ -3,7 +3,7 @@
 
 // Fetch the JSON data for 2018
 
-function build_2018_charts(token, reddit_max, twitter_max, alexa_max){
+function build_2018_charts(token, reddit_max, twitter_max, alexa_2021){
     const url_2018 = "/api/data/2018";
     d3.json(url_2018).then(function(data) {
 
@@ -40,9 +40,10 @@ function build_2018_charts(token, reddit_max, twitter_max, alexa_max){
         // Calculate max value for y axis
         reddit_max > Math.max.apply(Math, reddit_y) ? reddit_max = reddit_max : reddit_max = Math.max.apply(Math, reddit_y)
         twitter_max > Math.max.apply(Math, twitter_y) ? twitter_max = twitter_max : twitter_max = Math.max.apply(Math, twitter_y)
-        alexa_max > Math.max.apply(Math, alexa_y) ? alexa_max = alexa_max : () => { alexa_max = Math.max.apply(Math, alexa_y)
-            return console.log("test")
-        }
+
+        // Alexa rank is inverted since the lower rank is better
+        alexa_2021 < Math.max.apply(Math, alexa_y) ? alexa_2021 = Math.max.apply(Math, alexa_y) : alexa_2021 = alexa_2021
+       
 
         // console.log(Math.max(parseInt(alexa_y)))
         // twitter_max = Math.max(parseInt(twitter_y))
@@ -51,7 +52,7 @@ function build_2018_charts(token, reddit_max, twitter_max, alexa_max){
 
         build_plot(crypto_names, reddit_y, 'reddit', year, reddit_max)
         build_plot(crypto_names, twitter_y, 'twitter', year, twitter_max)
-        build_plot(crypto_names, alexa_y, 'alexa', year, alexa_max)
+        build_plot(crypto_names, alexa_y, 'alexa', year, alexa_2021)
     });
 };
 
@@ -126,9 +127,9 @@ function y_scale(token, year_a, year_b){
     years = [year_a, year_b]
     var max_values = []
     max_value = []
-    for (var x = 0; x < years.length; x++){
+    // for (var x = 0; x < years.length; x++){
 
-        const url = `/api/data/${years[x]}`;
+        let url = `/api/data/${year_a}`;
         d3.json(url).then(function (data) {
             //  Create an array with the data for the selected token
             var resultArray = data.filter(tokenObj => tokenObj.name == token);
@@ -137,31 +138,56 @@ function y_scale(token, year_a, year_b){
             // 
             resultArray == 0 ? data = data : data = resultArray;
             
-            max_y_value = 0
+            year_a_max_value = 0
         
             for (var i = 0; i < data.length; i++){
                     var alexa_int = data[i].alexa_rank
-                    alexa_int > max_y_value ? max_y_value = alexa_int : max_y_value = max_y_value
-                    // console.log(alexa_int)
+                    alexa_int > year_a_max_value ? year_a_max_value = alexa_int : year_a_max_value = year_a_max_value
             }
 
-            max_values.push(max_y_value)
-            
-            // console.log(Math.max(max_y_value))
+            url = `/api/data/${year_b}`
+            d3.json(url).then(function (data){
+                 //  Create an array with the data for the selected token
+                var resultArray = data.filter(tokenObj => tokenObj.name == token);
+
+                //  Check to see if the result array has no results, if so, it means user wants to see all tokens in graph
+                // 
+                resultArray == 0 ? data = data : data = resultArray;
+
+                for (var i = 0; i < data.length; i++){
+                    var alexa_int = data[i].alexa_rank
+                    alexa_int > year_a_max_value ? year_a_max_value = alexa_int : year_a_max_value = year_a_max_value
+            }
+            export_value(year_a_max_value)
+
+
+
+                
+                // console.log(data)
+                // console.log(year_a_max_value)
+            })
+    
 
         } ) 
-    } console.log(Math.max(max_values))
-    max_values.forEach(function(item, index, array){
-        console.log(item, index)
-    })
-    var max_y = 0
-    setTimeout(function (){
-        max_y = Math.max.apply(Math, max_values)
-        max_value.push(max_y)
-        console.log(Math.max.apply(Math, max_values)) }, 10000)
+    // } 
+    // max_values.forEach(function(item, index, array){
+    //     console.log(item, index)
+    // })
+    // var max_y = 0
+    // setTimeout(function (){
+    //     max_y = Math.max.apply(Math, max_values)
+    //     max_value.push(max_y)
+    //     console.log(Math.max.apply(Math, max_values)) }, 1000)
 
-    console.log(max_value)
+    // console.log(max_value)
     
+}
+
+// Define function to grab value
+
+function export_value(value){
+    console.log(value)
+    return value
 }
 
 // Build bar plots
@@ -226,4 +252,7 @@ function optionChanged(newToken){
 
 init()
 
-y_scale('', '2018', '2021');
+var test_last = y_scale('ethereum', '2018', '2021')
+
+console.log(test_last)
+
