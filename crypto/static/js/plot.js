@@ -1,71 +1,11 @@
 
+// Build both set of charts
 
-
-// Fetch the JSON data for 2018
-
-function build_2018_charts(token, reddit_max, twitter_max, alexa_2021){
-    console.log(token,reddit_max, twitter_max, alexa_2021)
-    const url_2018 = "/api/data/2018";
-    d3.json(url_2018).then(function(data) {
-
-        // // Grab hold of the selector
-        // var selector = d3.select("#selDataset");
-
-        //  Create an array with the data for the selected token
-        var resultArray = data.filter(tokenObj => tokenObj.name == token);
-
-        //  Check to see if the result array has no results, if so, it means user wants to see all tokens in graph
-        // 
-        resultArray == 0 ? data = data : data = resultArray;
-
-        // Make empty arrays to hold x and y values
-        var crypto_names = []
-        var reddit_y = []
-        var twitter_y = []
-        var alexa_y = []
-        var year = '2018'
-
-        for (i = 0; i < data.length ; i++){
-
-        index = data[i].id + 1
-        token = data[i].name
-        combo = index.toString() + ' ' + token
-
-        crypto_names.push(combo)
-        reddit_y.push(data[i].reddit_subscribers)
-        twitter_y.push(data[i].twitter_followers)
-        alexa_y.push(-data[i].alexa_rank)
-        
-        }
-
-        // Calculate max value for y axis
-        reddit_max > Math.max.apply(Math, reddit_y) ? reddit_max = reddit_max : reddit_max = Math.max.apply(Math, reddit_y)
-        twitter_max > Math.max.apply(Math, twitter_y) ? twitter_max = twitter_max : twitter_max = Math.max.apply(Math, twitter_y)
-
-        // Alexa rank is inverted since the lower rank is better
-        alexa_2021 < Math.min.apply(Math, alexa_y) ? alexa_2021 = alexa_2021 : alexa_2021 = Math.min.apply(Math, alexa_y) 
-       
-
-        // console.log(Math.max(parseInt(alexa_y)))
-        // twitter_max = Math.max(parseInt(twitter_y))
-        // alexa_max = Math.max(parseInt(alexa_y))
-
-
-        build_plot(crypto_names, reddit_y, 'reddit', year, reddit_max)
-        build_plot(crypto_names, twitter_y, 'twitter', year, twitter_max)
-        build_plot(crypto_names, alexa_y, 'alexa', year)
-    });
-};
-
-
-// pull data from 2021
-
-// Prepare data to build charts for 2021
-
-function build_2021_charts(token){
-    // console.log(token) == undefined
-    const url_2021 = "/api/data/2021";
-   d3.json(url_2021).then(function(data) {
+function build_2021_charts(token, year_a, year_b){
+    console.log(year_a)
+    const url_a = `/api/data/${year_a}`;
+    console.log(url_a)
+    d3.json(url_a).then(function(data) {
 
         // Check to see if a token was passed, if not, make it an empty string so chart for 2018 is not broken
         token ? token = token : token = " ";
@@ -83,7 +23,7 @@ function build_2021_charts(token){
         var reddit_y = []
         var twitter_y = []
         var alexa_y = []
-        var year = '2021'
+        // var year_a = '2021'
 
         for (i = 0; i < data.length ; i++){
         
@@ -95,24 +35,77 @@ function build_2021_charts(token){
         crypto_names.push(combo)
         reddit_y.push(data[i].reddit_subscribers)
         twitter_y.push(data[i].twitter_followers)
-        alexa_y.push(-data[i].alexa_rank)
+        alexa_y.push(data[i].alexa_rank)
     
         }
 
         // Obtain the y maximulum values
         // Send the maximum value to the other chart, compare and pass the biggest one to the build plot chart to normalize data
-        reddit_max = Math.max.apply(Math, reddit_y)
-        twitter_max = Math.max.apply(Math, twitter_y)
-        alexa_max = Math.min.apply(Math, alexa_y)
+        reddit_max_a = Math.max.apply(Math, reddit_y)
+        twitter_max_a = Math.max.apply(Math, twitter_y)
+        alexa_max_a = Math.max.apply(Math, alexa_y)
+
+        const url_b = `/api/data/${year_b}`;
+        d3.json(url_b).then(function(data) {
+            //  Create an array with the data for the selected token
+            var resultArray = data.filter(tokenObj => tokenObj.name == token);
+
+            //  Check to see if the result array has no results, if so, it means user wants to see all tokens in graph
+            // 
+            resultArray == 0 ? data = data : data = resultArray;
+
+            // Make empty arrays to hold x and y values
+            var crypto_names_b = []
+            var reddit_y_b = []
+            var twitter_y_b = []
+            var alexa_y_b = []
+            // var year_b = '2018'
+
+            for (i = 0; i < data.length ; i++){
+
+                index = data[i].id + 1
+                token = data[i].name
+                combo = index.toString() + ' ' + token
+
+                crypto_names_b.push(combo)
+                reddit_y_b.push(data[i].reddit_subscribers)
+                twitter_y_b.push(data[i].twitter_followers)
+                alexa_y_b.push(data[i].alexa_rank)
+                
+            }
+            // Obtain the y maximulum values
+            // Send the maximum value to the other chart, compare and pass the biggest one to the build plot chart to normalize data
+            reddit_max_b = Math.max.apply(Math, reddit_y_b)
+            twitter_max_b = Math.max.apply(Math, twitter_y_b)
+            alexa_max_b = Math.max.apply(Math, alexa_y_b)
+
+            // Compare values for both years
+
+            reddit_y_scale = 0
+            twitter_y_scale = 0
+            alexa_y_scale = 0
+
+            // Calculate max value for y axis
+            reddit_max_b > reddit_max_a ? reddit_y_scale = reddit_max_b : reddit_y_scale = reddit_max_a
+            twitter_max_b > twitter_max_a ? twitter_y_scale = twitter_max_b : twitter_y_scale = twitter_max_a
+            alexa_max_b > alexa_max_a ? alexa_y_scale = alexa_max_b : alexa_y_scale = alexa_max_a
+
+            // Build plots for year a
+            build_plot(crypto_names, reddit_y, 'reddit', year_a, reddit_y_scale)
+            build_plot(crypto_names, twitter_y, 'twitter', year_a, twitter_y_scale)
+            build_plot(crypto_names, alexa_y, 'alexa', year_a, alexa_y_scale)
+
+
+            // Build plots for year b
+            build_plot(crypto_names_b, reddit_y_b, 'reddit', year_b, reddit_y_scale)
+            build_plot(crypto_names_b, twitter_y_b, 'twitter', year_b, twitter_y_scale)
+            build_plot(crypto_names_b, alexa_y_b, 'alexa', year_b, alexa_y_scale)
+
+
+        })
+
         
-        console.log(alexa_max)
 
-        build_2018_charts(token, reddit_max, twitter_max, alexa_max)
-        console.log(crypto_names, alexa_y)
-
-        build_plot(crypto_names, reddit_y, 'reddit', year)
-        build_plot(crypto_names, twitter_y, 'twitter', year)
-        build_plot(crypto_names, alexa_y, 'alexa', year)
     });
 };
 
@@ -135,7 +128,10 @@ function build_plot(x_values, y_values, social, year, y_max){
         trace1
     ];
     var layout = {
-        yaxis: {range: [0, y_max]}
+        yaxis: {
+            side: 'left',
+            range: [0, y_max]
+        }
       };
 
     Plotly.newPlot(`${social}-plot${year}`, data, layout);
@@ -152,62 +148,6 @@ function define_color(social_media){
         return 'rgb(35, 47, 62)'
     }
 }
-
-// function to find the y max value to normalize the chart y axis view
-
-function y_scale(token, year_a, year_b){
-
-    years = [year_a, year_b]
-    var max_values = []
-    max_value = []
-    // for (var x = 0; x < years.length; x++){
-
-        let url = `/api/data/${year_a}`;
-        d3.json(url).then(function (data) {
-            //  Create an array with the data for the selected token
-            var resultArray = data.filter(tokenObj => tokenObj.name == token);
-
-            //  Check to see if the result array has no results, if so, it means user wants to see all tokens in graph
-            // 
-            resultArray == 0 ? data = data : data = resultArray;
-            
-            year_a_max_value = 0
-        
-            for (var i = 0; i < data.length; i++){
-                    var alexa_int = data[i].alexa_rank
-                    alexa_int > year_a_max_value ? year_a_max_value = alexa_int : year_a_max_value = year_a_max_value
-            }
-
-            url = `/api/data/${year_b}`
-            d3.json(url).then(function (data){
-                 //  Create an array with the data for the selected token
-                var resultArray = data.filter(tokenObj => tokenObj.name == token);
-
-                //  Check to see if the result array has no results, if so, it means user wants to see all tokens in graph
-                // 
-                resultArray == 0 ? data = data : data = resultArray;
-
-                for (var i = 0; i < data.length; i++){
-                    var alexa_int = data[i].alexa_rank
-                    alexa_int > year_a_max_value ? year_a_max_value = alexa_int : year_a_max_value = year_a_max_value
-            }
-            export_value(year_a_max_value)
-
-
-
-                
-                // console.log(data)
-                // console.log(year_a_max_value)
-            })
-    
-
-        } ) 
-
-    
-}
-
-
-
 
 // Select the year from the drowdown menu
 
@@ -231,7 +171,7 @@ function init() {
     
     
     // build_2018_charts();
-    build_2021_charts();
+    build_2021_charts("", 2018, 2021);
 
     });
   }
@@ -240,10 +180,10 @@ function init() {
 
 function optionChanged(newToken){
     
-    build_2018_charts(newToken)
-    build_2021_charts(newToken)
+    // build_2018_charts(newToken)
+    build_2021_charts(newToken, 2018, 2021)
 }
 
-init()
+init();
 
 
