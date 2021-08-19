@@ -28,3 +28,4 @@ The app expects you have a local database set up with 2 tables: cleaned_2018_sta
     \i '<path/to/schemata_db.sql>'     (include single quotes)
     \copy <table_name> from '</path/to/csv>' delimiter',' csv header         (include single quotes again) the path to the CSV Should be the path to your clean_2018.csv file found in crypto/static/data
 
+
