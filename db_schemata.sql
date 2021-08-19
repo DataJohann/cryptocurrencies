@@ -97,3 +97,10 @@
 -- \i ‘/Users/johannvillalvir/cryptocurrencies/db_schemata.sql’
 
 -- \copy bitcoin_four_years_data from ‘/Users/johannvillalvir/cryptocurrencies/crypto/static/data/reversed_bitcoin.csv’ delimiter ‘,’ csv header
+
+
+
+-- -- Alter a table data type to be date
+
+-- ALTER TABLE master_db
+-- alter column dt type date using dt::date
