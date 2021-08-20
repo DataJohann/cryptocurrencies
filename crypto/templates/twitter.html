@@ -5,7 +5,9 @@
 <head>
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
 
-    <title>Twitter Followers Chart per ryptocurrency</title>
+    <title>Cryptocurrency's Twitter Followers Count | Cryptolytics.xyz</title>
+    <meta name="description" content="Cryptocurrency's Twitter Followers - What cryptocurrency has the most Twitter followers? Find best crypto communities by comparing activity accross all social media channels">
+    <meta name="keywords" content="Twitter, Followers, Cryptocurrencies, Statistics, Community, Count, Subscribers, Analytics, Statistics, Subreddits">
 
     <!-- Bootstrap CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,9 +58,9 @@
                                         Social Media
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <li><a class="dropdown-item dropdown-item-reddit" href="/reddit">Reddit</a></li>
-                                        <li><a class="dropdown-item dropdown-item-twitter" href="/twitter">Twitter</a></li>
-                                        <li><a class="dropdown-item dropdown-item-alexa" href="/alexa">Alexa Rank</a></li>
+                                        <li><a class="dropdown-item dropdown-item-reddit" href="/Cryptocurrency-Reddit-Subscribers-Tracker">Reddit</a></li>
+                                        <li><a class="dropdown-item dropdown-item-twitter" href="/Cryptocurrency-Twitter-Followers-Tracker">Twitter</a></li>
+                                        <li><a class="dropdown-item dropdown-item-alexa" href="/Cryptocurrency-Alexa-Rank-Tracker">Alexa Rank</a></li>
                                     </ul>
                                 </li>
 
@@ -100,7 +102,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row last-row">
             <div class="col">
 
                 <!-- Div for the first graph created with plotly -->
@@ -129,5 +131,24 @@
 <!-- Connect plot js -->
 <script src="{{ url_for('static', filename='js/twitter.js') }}"></script>
 
+
+
+<div class="footer-basic">
+    <footer>
+        <div class="social"><a href="https://twitter.com/cryptolyticsHQ"><i class="icon ion-social-twitter"></i></a></div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="/">Home</a></li>
+            <!-- <li class="list-inline-item"><a href="#">Services</a></li> -->
+            <li class="list-inline-item"><a href="#">About</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Cryptolytics © 2021</p>
+    </footer>
+</div>
+
+<!-- Library for footer -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 </body>
+</html>
 

@@ -18,10 +18,10 @@ from flask import Flask
 
 app = Flask(__name__)
 
-# Connect to local database
-from config import password
+# # Connect to local database
+# from config import password
 
-rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
+# rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
 
 
 ## Save this line for production connection to heroku database
