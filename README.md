@@ -1,16 +1,24 @@
 # Step 1: Getting all the files in your machine and your environment set up
 
 ## 1. Clone this repo to your local machine
+
 ## 2. Install conda package manager for python:
 
+### Install anaconda for Mac
+
 ###    Step 1. Go to the Anaconda Distribution Page
+
+        https://www.anaconda.com/products/individual
 
 ###    Step 2 Click Download, and select the latest Python version.
 
 ###    Step 3 Follow the steps in the visual installer!
 
 ###    Install Anaconda for Windows
+
 ###    Step 1. Go to the Anaconda Distribution Page
+
+        https://www.anaconda.com/products/individual
 
 ###    Step 2. Click Download, and select the latest Python version.
 
@@ -79,7 +87,18 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
     " 
 ####  code lines lines 1-9
 
-### 2. open psql shell and run: 
+### 2. open psql shell
+
+#### I will ask a few questions. Do the following for each prompt: 
+#### Server, leave it as localhost, so press enter
+#### Database. leave it as postgres, so press enter
+#### Port, leave it as 5432, so press enter
+#### Username. leave it as postgress, so press enter
+#### Password, input the password that you saved when you were installing psql in the step above, (note: you won't see any characters as you type). Once you input the password press enter your terminal will now say postgres plus some characters if succesful. If unsuccesful, make sure you're typing the right password
+
+
+
+ and run: 
     \i '<path/to/schemata_db.sql>'
 
 ####    (include single quotes but not <> symbols)
@@ -137,7 +156,7 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
 
 
-# Step 3: making run.sh executable
+# Step 3: Making run.sh executable and making config.py file with your psql password
 
 
 
@@ -146,12 +165,22 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
 ## 2. Run:
     ls
-## in your terminal and the "run.sh" file should show up in the list. If not, you're in the wrong directory
+### in your terminal and the "run.sh" file should show up in the list. If not, you're in the wrong directory
 
 ## 3. Once in the right directory, run:
 
     chmod a+x run.sh
-## still in your terminal. This will make run.sh file executable
+### while still in your terminal. This will make run.sh file executable
+
+## 4. From the project's main directory, navigate to crypto directory
+
+## 5. Use your preferred text editor to make a file with the name 'config.py'
+
+## 6. Inside the config.py file, make a variable called "password" and set it equals to your password for psql. For example:
+
+password = 'my_password'
+
+### make sure you surround your password with quotes
 
 # Step 4: Activating environment and running app:
 
@@ -167,7 +196,8 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
     conda env list
 
-#### in your terminal. This will show a list of all available environments. Make sure crypto_tracker_env is there and check spelling. If not present, check step one in this guide
+##### in your terminal. This will show a list of all available environments. Make sure crypto_tracker_env is there and check spelling. If not present, check step one in this guide
+
 
 ## 2. Still in the main directory for the project, run:
     ./run.sh
