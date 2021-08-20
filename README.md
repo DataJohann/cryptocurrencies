@@ -1,7 +1,25 @@
 # Step 1: Getting all the files in your machine and your environment set up
 
-1. Clone this repo to your local machine
-2. Create a new environment to hold our libraries by running the following command in your terminal: 
+## 1. Clone this repo to your local machine
+## 2. Install conda package manager for python:
+
+    Install Anaconda for Mac
+    Step 1. Go to the Anaconda Distribution Page
+
+    Step 2 Click Download, and select the latest Python version.
+
+    Step 3 Follow the steps in the visual installer!
+
+    Install Anaconda for Windows
+    Step 1. Go to the Anaconda Distribution Page
+
+    Step 2. Click Download, and select the latest Python version.
+
+    Step 3. Open the installer and follow the instructions to complete the installation.
+
+    Important! Please ensure that you check the box that says "add to PATH" when installing on PC.
+
+## 3. Create a new environment to hold our libraries by running the following command in your terminal: 
 
     conda create -n crypto_tracker --file <path to requirements.txt file you just cloned> python=3.7
 
@@ -25,9 +43,10 @@ The app expects you have a local database set up with 2 tables: cleaned_2018_sta
 ####  code lines lines 1-9
 
 ### 2. open psql shell and run: 
-    \i '<path/to/schemata_db.sql>'     
+    \i '<path/to/schemata_db.sql>'
+
 ####    (include single quotes)
-    \copy <table_name> from '</path/to/csv>' delimiter',' csv header         
+
+    \copy <table_name> from '</path/to/csv>' delimiter',' csv header
+
 #### (include single quotes again) the path to the CSV Should be the path to your clean_2018.csv file found in crypto/static/data
-
-
