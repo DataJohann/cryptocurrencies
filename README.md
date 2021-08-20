@@ -68,12 +68,12 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
 ####    The final screen will be the Pre Installation Summary
 
-### 4. search for psql and click in the program to run it. A terminal connecting to postgress will open
+### 4. Verify installation: search for psql and click in the program to run it. A terminal connecting to postgress will open
 
 
 ## 2.  Set up the first Table
 
-### 1. Open db_schemata.sql and uncomment:
+### 1. Open db_schemata.sql (found in the main directory) and uncomment:
     " 
     create table cleaned_2018_stats(
 	id serial primary key,
@@ -91,14 +91,15 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
 #### I will ask a few questions. Do the following for each prompt: 
 #### Server, leave it as localhost, so press enter
-#### Database. leave it as postgres, so press enter
+#### Database, leave it as postgres, so press enter
 #### Port, leave it as 5432, so press enter
-#### Username. leave it as postgress, so press enter
+#### Username, leave it as postgress, so press enter
 #### Password, input the password that you saved when you were installing psql in the step above, (note: you won't see any characters as you type). Once you input the password press enter your terminal will now say postgres plus some characters if succesful. If unsuccesful, make sure you're typing the right password
 
 
 
- and run: 
+### and run: 
+
     \i '<path/to/schemata_db.sql>'
 
 ####    (include single quotes but not <> symbols)
@@ -109,7 +110,7 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
 ## 3. Set up second table
 
-### 1. Open db_schemata.sql and comment:
+### 1. Open db_schemata.sql document found in the main directory and COMMENT:
     " 
     create table cleaned_2018_stats(
 	id serial primary key,
@@ -119,12 +120,13 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 	reddit_subscribers float,
 	twitter_followers float,
 	alexa_rank float
+    )
 
     " 
 ####  code lines lines 1-9
 
-#### And uncomment :
-""
+#### And UN-COMMENT :
+    "
     create table universal_stats(
         id serial primary key,
         name varchar,
@@ -138,9 +140,9 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
         atl float,
         atl_change_percentage varchar,
         atl_date varchar
-)
+    )
 
-""
+    "
 
 #### lines 11 - 25
 
@@ -163,14 +165,14 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
 ## 1. Use your terminal to navigate to the project repo
 
-## 2. Run:
+## 2. In your terminal, run:
     ls
-### in your terminal and the "run.sh" file should show up in the list. If not, you're in the wrong directory
+### You should see the "run.sh" file in the list. If not, you're in the wrong directory
 
-## 3. Once in the right directory, run:
+## 3. Once in the right directory, while in your terminal run:
 
     chmod a+x run.sh
-### while still in your terminal. This will make run.sh file executable
+### This will make run.sh file executable
 
 ## 4. From the project's main directory, navigate to crypto directory
 
@@ -184,11 +186,11 @@ password = 'my_password'
 
 # Step 4: Activating environment and running app:
 
-## 1. While in project directory, run:
+## 1. While in project directory, run the following command in your terminal:
 
     conda activate crypto_tracker_env
 
-### in your terminal, you should see (crypto_tracker_env) in your terminal indicating the environment is activated
+### You should see (crypto_tracker_env) indicating the environment is activated
 
 #### Troubleshooting:
 
@@ -196,8 +198,14 @@ password = 'my_password'
 
     conda env list
 
-##### in your terminal. This will show a list of all available environments. Make sure crypto_tracker_env is there and check spelling. If not present, check step one in this guide
+##### This will show a list of all available environments. Make sure crypto_tracker_env is there and check spelling. If not present, check step one in this guide
 
 
 ## 2. Still in the main directory for the project, run:
     ./run.sh
+
+## 3. Open your broser and go to the link provided in your terminal. It should look something like:
+
+    http://127.0.0.1:5000/
+
+# Congratulations! The app is running locally
