@@ -6,14 +6,11 @@
 
 <head>
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
-    <title>Community Activity Tracker for Cryptocurrencies</title>
+    <title>Cryptocurrency's Reddit, Twitter, Alexa Count | Cryptolytics.xyz</title>
 
     <!-- Bootstrap CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script> 
 
     <!-- Plotly js library -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -60,9 +57,9 @@
                                         Social Media
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <li><a class="dropdown-item dropdown-item-reddit" href="/reddit">Reddit</a></li>
-                                        <li><a class="dropdown-item dropdown-item-twitter" href="/twitter">Twitter</a></li>
-                                        <li><a class="dropdown-item dropdown-item-alexa" href="/alexa">Alexa Rank</a></li>
+                                        <li><a class="dropdown-item dropdown-item-reddit" href="/Cryptocurrency-Reddit-Subscribers-Tracker">Reddit</a></li>
+                                        <li><a class="dropdown-item dropdown-item-twitter" href="/Cryptocurrency-Twitter-Followers-Tracker">Twitter</a></li>
+                                        <li><a class="dropdown-item dropdown-item-alexa" href="/Cryptocurrency-Alexa-Rank-Tracker">Alexa Rank</a></li>
                                     </ul>
                                 </li>
 
@@ -104,13 +101,13 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container-lg">
 
         <!-- Graphs for dataset for reddit-->
 
         <div class="row">
 
-            <a href="/reddit"> <h3 class="p-header dropdown-item-reddit">Reddit Subscribers</h3> </a>
+            <a href="/Cryptocurrency-Reddit-Subscribers-Tracker"> <h3 class="p-header dropdown-item-reddit">Reddit Subscribers</h3> </a>
 
             <div class="col-6">
                 <!-- Div for the first graph created with plotly -->
@@ -132,7 +129,7 @@
         
         <div class="row">
 
-            <a href="/twitter"> <h3 class="p-header dropdown-item-twitter">Twitter Followers</h3> </a>
+            <a href="/Cryptocurrency-Twitter-Followers-Tracker"> <h3 class="p-header dropdown-item-twitter">Twitter Followers</h3> </a>
 
             <div class="col-6">
 
@@ -155,7 +152,7 @@
         </div>
         <div class="row">
 
-            <a href="/alexa"> <h3 class="p-header dropdown-item-alexa">Alexa Rank</h3> </a>
+            <a href="/Cryptocurrency-Alexa-Rank-Tracker"> <h3 class="p-header dropdown-item-alexa">Alexa Rank</h3> </a>
 
             <div class="col-6">
 
@@ -200,5 +197,7 @@
 <script src="{{ url_for('static', filename='js/plot.js') }}"></script>
 <!-- <script src="{{ url_for('static', filename='js/bitcoin.js') }}"></script> -->
 
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 </html>

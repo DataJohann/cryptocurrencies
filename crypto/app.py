@@ -81,7 +81,7 @@ def css():
 
 # Route for alexa page
 
-@app.route("/alexa")
+@app.route("/Cryptocurrency-Alexa-Rank-Tracker")
 def alexa():
 
 
@@ -94,7 +94,7 @@ def update_db():
 
 # Route for twitter data page
 
-@app.route("/twitter")
+@app.route("/Cryptocurrency-Twitter-Followers-Tracker")
 def twitter():
 
 
@@ -103,7 +103,7 @@ def twitter():
 
 # Route for reddit data page
 
-@app.route("/reddit")
+@app.route("/Cryptocurrency-Reddit-Subscribers-Tracker")
 def reddit():
 
 
@@ -199,14 +199,12 @@ def data_2021():
     return price_json
 
 
-# Provide api that gives all of the names of the cryptocurrencies in question
+# Provide api to test databases
 
-@app.route("/api/names")
+@app.route("/test")
 def names():
 
-
-
-    price = pd.read_sql_query("select name from cleaned_2018_stats", con=engine)
+    price = pd.read_sql_query("select * from master_list", con=engine)
 
     price_json = price.to_json(orient='records', double_precision=3, )
     
