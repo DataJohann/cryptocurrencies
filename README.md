@@ -41,18 +41,18 @@
 
 
 
-The app expects a local database set up with 2 tables: cleaned_2018_stats and cleaned_2021_stats. There are csv files to start your database. Run the following queries in psql command shell
+The app expects a local database set up with 2 tables: cleaned_2018_stats and cleaned_2021_stats. There are csv files to start your database.
  
 ## 1. Intalling postgres (skip this step if you already have postgres in your machine)
 
-### 1. Visit: 
+### A. Visit: 
     https://www.enterprisedb.com/downloads/postgres-postgresql-downloads 
     
 #### and download the postgres version that matches your system (windows or mac)
 
-### 2. Once file is dowloaded, click and execute it. For windows, the file will end in .exe and for Mac in .app
+### B. Once file is dowloaded, click and execute it. For windows, the file will end in .exe and for Mac in .app
 
-### 3. Go through the Setup Wizard and install PostgreSQL. Keep the default location as: /Library/PostgreSQL/12.
+### C. Go through the Setup Wizard and install PostgreSQL. Keep the default location as: /Library/PostgreSQL/12.
 
 # IMPORTANT: WRITE DOWN THE PASSWORD FOR POSTGRES USER WHEN PROMPTED. YOU WILL NEED IT LATER TO ACCESS PSQL
 
@@ -68,12 +68,12 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
 ####    The final screen will be the Pre Installation Summary
 
-### 4. Verify installation: search for psql and click in the program to run it. A terminal connecting to postgress will open
+### D. Verify installation: search for psql and click in the program to run it. A terminal connecting to postgress will open
 
 
 ## 2.  Set up the first Table
 
-### 1. Open db_schemata.sql (found in the main directory) and uncomment:
+### A. Open db_schemata.sql (found in the main directory) and uncomment:
     " 
     create table cleaned_2018_stats(
 	id serial primary key,
@@ -87,7 +87,7 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
     " 
 ####  code lines lines 1-9
 
-### 2. open psql shell
+### B. open psql shell
 
 #### I will ask a few questions. Do the following for each prompt: 
 #### Server, leave it as localhost, so press enter
@@ -110,7 +110,7 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
 ## 3. Set up second table
 
-### 1. Open db_schemata.sql document found in the main directory and COMMENT:
+### A. Open db_schemata.sql document found in the main directory and COMMENT:
     " 
     create table cleaned_2018_stats(
 	id serial primary key,
@@ -146,7 +146,7 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
 #### lines 11 - 25
 
-### 2. open psql shell and run: 
+### B. open psql shell and run: 
     \i '<path/to/schemata_db.sql>'
 
 ####    (include single quotes but not <> symbols)
