@@ -3,27 +3,35 @@
 ## 1. Clone this repo to your local machine
 ## 2. Install conda package manager for python:
 
-    Install Anaconda for Mac
-    Step 1. Go to the Anaconda Distribution Page
+###    Step 1. Go to the Anaconda Distribution Page
 
-    Step 2 Click Download, and select the latest Python version.
+###    Step 2 Click Download, and select the latest Python version.
 
-    Step 3 Follow the steps in the visual installer!
+###    Step 3 Follow the steps in the visual installer!
 
-    Install Anaconda for Windows
-    Step 1. Go to the Anaconda Distribution Page
+###    Install Anaconda for Windows
+###    Step 1. Go to the Anaconda Distribution Page
 
-    Step 2. Click Download, and select the latest Python version.
+###    Step 2. Click Download, and select the latest Python version.
 
-    Step 3. Open the installer and follow the instructions to complete the installation.
+###    Step 3. Open the installer and follow the instructions to complete the installation.
 
-    Important! Please ensure that you check the box that says "add to PATH" when installing on PC.
+###    Important! Please ensure that you check the box that says "add to PATH" when installing on PC.
 
 ## 3. Create a new environment to hold our libraries by running the following command in your terminal: 
 
     conda create -n crypto_tracker_env --file <path to requirements.txt file you just cloned> python=3.7
 
+#### Don't include <> symbols in the path
+
+
+
+
 # Step 2: Setting up local Database with postgres
+
+
+
+
 
 The app expects a local database set up with 2 tables: cleaned_2018_stats and cleaned_2021_stats. There are csv files to start your database. Run the following queries in psql command shell
  
@@ -38,17 +46,19 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
 ### 3. Go through the Setup Wizard and install PostgreSQL. Keep the default location as: /Library/PostgreSQL/12.
 
-    Select the components to be installed. Be sure to un-check Stack Builder.
+# IMPORTANT: WRITE DOWN THE PASSWORD FOR POSTGRES USER WHEN PROMPTED. YOU WILL NEED IT LATER TO ACCESS PSQL
+
+####    Select the components to be installed. Be sure to un-check Stack Builder.
 
 
 
-    Next, add your Data Directory. Keep the default location as: /Library/PostgreSQL/12/data.
+####    Next, add your Data Directory. Keep the default location as: /Library/PostgreSQL/12/data.
 
-    Next, enter postgres as the password. Be sure to record this password for future use.
+####    Next, enter postgres as the password. Be sure to record this password for future use.
 
-    Keep the default port as 5432 and in the Advanced Options, set the locale as [Default locale].
+####    Keep the default port as 5432 and in the Advanced Options, set the locale as [Default locale].
 
-    The final screen will be the Pre Installation Summary
+####    The final screen will be the Pre Installation Summary
 
 ### 4. search for psql and click in the program to run it. A terminal connecting to postgress will open
 
@@ -124,7 +134,13 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
 #### (include single quotes again but not <> symbols) the path to the CSV Should be the path to your cleaned_2021_stats.csv file found in crypto/static/data
 
+
+
+
 # Step 3: making run.sh executable
+
+
+
 
 ## 1. Use your terminal to navigate to the project repo
 
@@ -149,7 +165,7 @@ The app expects a local database set up with 2 tables: cleaned_2018_stats and cl
 
 #### 1. If environment fails to activate, you will see an error like "conda environment not found" run:
 
-        conda env list
+    conda env list
 
 #### in your terminal. This will show a list of all available environments. Make sure crypto_tracker_env is there and check spelling. If not present, check step one in this guide
 
