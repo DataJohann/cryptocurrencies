@@ -81,7 +81,7 @@ def css():
 
 # Route for alexa page
 
-@app.route("/alexa")
+@app.route("/Cryptocurrency-Alexa-Rank-Tracker")
 def alexa():
 
 
@@ -94,7 +94,7 @@ def update_db():
 
 # Route for twitter data page
 
-@app.route("/twitter")
+@app.route("/Cryptocurrency-Twitter-Followers-Tracker")
 def twitter():
 
 
@@ -103,7 +103,7 @@ def twitter():
 
 # Route for reddit data page
 
-@app.route("/reddit")
+@app.route("/Cryptocurrency-Reddit-Subscribers-Tracker")
 def reddit():
 
 

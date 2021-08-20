@@ -37,6 +37,7 @@
 }
 
 .img-fluid-icon{
+    min-width: 100px;
     width: 7%;
     position: absolute;
     top: 5px;
@@ -54,7 +55,7 @@
 
 .text-muted-link{
     padding-top: 5vh;
-    padding-left: 35vh;
+    padding-left: 35%;
 }
 
 a{
