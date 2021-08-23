@@ -1,8 +1,11 @@
 
 // Build both set of charts
 
-function build_2021_charts(token, year_a, year_b){
-    console.log(year_a)
+function build_charts_year_a_year_b(token, year_a, year_b){
+
+    // Log year to verify
+    // console.log(year_a)
+
     const url_a = `/api/data/${year_a}`;
     console.log(url_a)
     d3.json(url_a).then(function(data) {
@@ -161,29 +164,31 @@ function define_color(social_media){
     }
 }
 
-// Select the year from the drowdown menu
+// Select the token from the drowdown menu
 
 function init() {
+
     // Grab a reference to the dropdown select element
-    var selector = d3.select("#selDataset");
-  
+    var token_selector = d3.select("#selToken");
+
+
+
     // Use the list of sample names to populate the dropdown menu options
     d3.json("/api/data/2018").then((data) => {
     
     // Add 'All option to see all entries
-    selector
+    token_selector
     .append("option")
     .text("All")
     Object.entries(data).forEach(([key, value]) =>{
-        selector
+        token_selector
         .append("option")
         .text(value.name)
         .property("value", value.name)
     })
     
-    
-    // build_2018_charts();
-    build_2021_charts("", 2018, 2021);
+    // Initiate by buildi
+    build_charts_year_a_year_b("", 2018, 2021);
 
     });
   }
@@ -191,11 +196,22 @@ function init() {
 // Call a function to rebuild the chart when the option changes
 
 function optionChanged(newToken){
-    
+    console.log(newToken)
+
+    // var year_selector = d3.select("#selYearA");
+    console.log(d3.select("#selToken").node().value)
+    console.log(d3.select("#start").node().value)
+    console.log(d3.select("#end").node().value)
+    // year_selector.this.value ? console.log("exist") : console.log("does not exist")
     // build_2018_charts(newToken)
-    build_2021_charts(newToken, 2018, 2021)
+    build_charts_year_a_year_b(newToken, 2018, 2021)
 }
 
+
+function dateChanged(new_date){
+    console.log(new_date)
+    console.log(d3.select("#start").node().value)
+}
 init();
 
 
