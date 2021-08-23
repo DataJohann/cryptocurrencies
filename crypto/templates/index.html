@@ -94,11 +94,11 @@
         <div class="row">
             <div class="col">
                 <h1>Cryptocurrency Community Tracker: Reddit, Twitter, Alexa Rank </h1>
-                <h2 class="text-muted">Compare Cryptocurrency's communities accross Reddit, Twitter, and Alexa Rank for Bitcoin, Ethereum, Doge and 100+ cryptocurrencies</h2>
+                <h2 class="p-header text-muted">Compare Cryptocurrency's communities accross Reddit, Twitter, and Alexa Rank for Bitcoin, Ethereum, Doge and 100+ cryptocurrencies</h2>
 
                 <div class="well">
-                    <select id="selDataset" onchange="optionChanged(this.value)"></select>
-                  </div>
+                    <select id="selToken" onchange="optionChanged(this.value)"></select>
+                </div>
                 
             </div>
         </div>
@@ -110,18 +110,27 @@
 
         <div class="row">
 
-            <a href="/Cryptocurrency-Reddit-Subscribers-Tracker"> <h3 class="p-header dropdown-item-reddit">Reddit Subscribers</h3> </a>
+            <h3 class="p-header"> <a href="/Cryptocurrency-Reddit-Subscribers-Tracker" class="dropdown-item-reddit">Reddit Subscribers</a></h3>
 
             <div class="col-6">
-                <!-- Div for the first graph created with plotly -->
-                <h3 class="text-muted text-muted-link">2018</h3>
+                <label for="start">Compare: </label>
+
+                <input type="date" id="start" name="trip-start"
+                value="2019-01-04"
+                min="2019-01-04" max="2021-08-20" onchange="dateChanged(this.value)">
+                <!-- <h3 class="text-muted text-muted-link">2018</h3> -->
                 <div id="reddit-plot2018" alt="Reddit Subscribers count for top cryptocurrencies in 2018"></div>
                 
             </div>
 
             <div class="col-6">
                 <!-- Div for the first graph created with plotly -->
-                <h3 class="text-muted text-muted-link">2021</h3>
+                <!-- <h3 class="text-muted text-muted-link">2021</h3> -->
+                <label for="start">To: </label>
+
+                <input type="date" id="end" name="trip-end"
+                value="2021-01-04"
+                min="2019-01-04" max="2021-08-20" onchange="dateChanged(this.value)" >
                 <div id="reddit-plot2021" alt="Reddit Subscribers count for top cryptocurrencies in 2021"></div>
                 <!-- <a href="/reddit"> <p class="text-muted text-muted-link">Reddit Subscribers</p> </a> -->
             </div>
@@ -132,12 +141,13 @@
         
         <div class="row">
 
-            <a href="/Cryptocurrency-Twitter-Followers-Tracker"> <h3 class="p-header dropdown-item-twitter">Twitter Followers</h3> </a>
+            <h3 class="p-header"><a href="/Cryptocurrency-Twitter-Followers-Tracker" class="dropdown-item-twitter" >Twitter Followers </a> </h3>
 
             <div class="col-6">
 
                 <!-- Div for the first graph created with plotly -->
                 <h3 class="text-muted text-muted-link">2018</h3>
+                
                 <div id="twitter-plot2018" alt="Twitter followers count for top cryptocurrencies in 2018"></div>
                 <!-- <a href="/twitter"> <p class="text-muted text-muted-link">Twitter Followers</p> </a> -->
                 
@@ -155,7 +165,7 @@
         </div>
         <div class="row">
 
-            <a href="/Cryptocurrency-Alexa-Rank-Tracker"> <h3 class="p-header dropdown-item-alexa">Alexa Rank</h3> </a>
+            <h3 class="p-header "> <a href="/Cryptocurrency-Alexa-Rank-Tracker" class="dropdown-item-alexa">Alexa Rank</a></h3>
 
             <div class="col-6">
 
