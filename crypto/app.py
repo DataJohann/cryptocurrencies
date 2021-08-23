@@ -64,7 +64,8 @@ crypto_2018 = Base.classes.cleaned_2018_stats
 
 # Schedule database to be uploaded everyday at midnight
 
-schedule.every().day.at("00:00").do(master_database_updating_app_bitcoin_only, 'bitcoin_four_years_data')
+# Jobs don't work FIX THEM
+# schedule.every().day.at("00:00").do(master_database_updating_app_bitcoin_only, 'bitcoin_four_years_data')
 
 @app.route("/")
 def index():
@@ -87,10 +88,7 @@ def alexa():
 
     return render_template('Alexa_Rank.html')
 
-@app.route("/update_db")
-def update_db():
-    
-    return master_database_updating_app_bitcoin_only('bitcoin_four_years_data')
+
 
 # Route for twitter data page
 
@@ -108,6 +106,14 @@ def reddit():
 
 
     return render_template('reddit.html')
+
+
+# Route to update db manually
+
+@app.route("/update_db")
+def update_db():
+    
+    return master_database_updating_app_bitcoin_only('bitcoin_four_years_data')
 
 #######################################################
 # You can serve images from routes also!!
