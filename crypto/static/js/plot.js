@@ -4,10 +4,12 @@
 function build_charts_year_a_year_b(token, year_a, year_b){
 
     // Log year to verify
-    // console.log(year_a)
-
+    console.log(token)
+    token === "" || "All"? console.log("token is empty") : console.log("token has a value")
     const url_a = `/api/data/${year_a}`;
-    console.log(url_a)
+
+    // console.log(url_a)
+
     d3.json(url_a).then(function(data) {
 
         // Check to see if a token was passed, if not, make it an empty string so chart for 2018 is not broken

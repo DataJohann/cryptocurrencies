@@ -224,22 +224,48 @@ def data_2021():
 # Returns json style data for a specific token over a specific date range
 
 
-# @app.route("/test/<token_name>/<start_date>/<end_date>")
-# def data_by_name(token_name, start_date, end_date):
+@app.route("/test/<token_name>/<start_date>/<end_date>")
+def data_by_name(token_name, start_date, end_date):
 
-#     # token_name
-#     data_type = str(start_date)
-#     # token_name = input('What crypto currency would you like to search? ')
-#     price = pd.read_sql_query(f"select dt::varchar, id, \
-#                                 twitter_followers, \
-#                                 reddit_average_comments_48h, reddit_subscribers,\
-#                                 reddit_accounts_active_48h from master_db \
-#                                 where id like '{token_name}' and dt between '{start_date}' and '{end_date}' \
-#                                 order by dt desc;", con=engine)
+    # token_name
+    if token_name == "All":
+        token_name = '%%'
+    data_type = str(start_date)
+    # token_name = input('What crypto currency would you like to search? ')
+    price = pd.read_sql_query(f"select dt::varchar, id, \
+                                twitter_followers, \
+                                reddit_average_comments_48h, reddit_subscribers,\
+                                reddit_accounts_active_48h from master_db \
+                                where id like '{token_name}' and dt between '{start_date}' and '{end_date}' \
+                                order by dt desc;", con=engine)
 
-#     price_json = price.to_json(orient='records', double_precision=3)
+    price_json = price.to_json(orient='records', double_precision=3)
   
-#     return price_json
+    return price_json
+
+@app.route("/api/<token_name>/<date>")
+def date_token(token_name, date):
+
+    # token_name
+    if token_name == "All":
+        token_name = '%%'
+    
+    # token_name = input('What crypto currency would you like to search? ')
+    price = pd.read_sql_query(f"select dt::varchar, id, \
+                                price, \
+                                market_cap, \
+                                twitter_followers, reddit_average_comments_48h, \
+                                reddit_subscribers, \
+                                reddit_accounts_active_48h from master_db \
+                                where id like '{token_name}' \
+                                and dt = '{date}' \
+                                and reddit_subscribers is not null \
+                                order by market_cap desc;", con=engine)
+
+    price_json = price.to_json(orient='records', double_precision=3)
+  
+    return price_json
+
 
 # App route for reddit info api
 
