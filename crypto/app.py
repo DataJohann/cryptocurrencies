@@ -164,16 +164,16 @@ def bitcoin():
     
     return result_json
 
-@app.route("/api/data/universal")
-def uni():
+# @app.route("/api/data/universal")
+# def uni():
 
 
     
-    price = pd.read_sql_query("select * from universal_stats", con=engine)
+#     price = pd.read_sql_query("select * from universal_stats", con=engine)
 
-    price_json = price.to_json(orient='records', double_precision=3, )
+#     price_json = price.to_json(orient='records', double_precision=3, )
     
-    return price_json
+#     return price_json
 
 
 @app.route("/api/data/2018")
@@ -199,17 +199,52 @@ def data_2021():
     return price_json
 
 
-# Provide api to test databases
+# # Provide api to test databases
 
-@app.route("/test")
-def names():
+# @app.route("/test")
+# def names():
 
-    price = pd.read_sql_query("select * from master_list", con=engine)
+#     price = pd.read_sql_query("select * from master_db", con=engine)
 
-    price_json = price.to_json(orient='records', double_precision=3, )
+#     price_json = price.to_json(orient='records', double_precision=3, )
     
-    return price_json
+    # return price_json
 
+
+
+
+
+
+# Returns json style data for a specific token over a specific date range
+
+
+# @app.route("/test/<token_name>/<start_date>/<end_date>")
+# def data_by_name(token_name, start_date, end_date):
+
+#     # token_name
+#     data_type = str(start_date)
+#     # token_name = input('What crypto currency would you like to search? ')
+#     price = pd.read_sql_query(f"select dt::varchar, id, \
+#                                 twitter_followers, \
+#                                 reddit_average_comments_48h, reddit_subscribers,\
+#                                 reddit_accounts_active_48h from master_db \
+#                                 where id like '{token_name}' and dt between '{start_date}' and '{end_date}' \
+#                                 order by dt desc;", con=engine)
+
+#     price_json = price.to_json(orient='records', double_precision=3)
+  
+#     return price_json
+
+# App route for reddit info api
+
+# @app.route("/api/reddit")
+# def reddit_api():
+    
+#     result = pd.read_sql_query("select name, reddit_subscribers from cleaned_2018_stats", con=engine)
+
+#     result_json = result.to_json(orient='records', double_precision=3, )
+    
+#     return result_json
 
 ###########################################
 # Another way to display api through a session
@@ -229,28 +264,7 @@ def names():
 
 # Route for searching
 
-@app.route("/api/single_search")
-def data_by_name():
-
-
-    crypto_to_search = input('What crypto currency would you like to search? ')
-    price = pd.read_sql_query(f"select * from cleaned_2018_stats where name like '{crypto_to_search}' ", con=engine)
-
-    price_json = price.to_json(orient='records', double_precision=3, )
-    
-    return price_json
-
-# App route for reddit info api
-
-@app.route("/api/reddit")
-def reddit_api():
-    
-    result = pd.read_sql_query("select name, reddit_subscribers from cleaned_2018_stats", con=engine)
-
-    result_json = result.to_json(orient='records', double_precision=3, )
-    
-    return result_json
 
 
 if __name__ =="__main__":
-    app.run(debug=False)
+    app.run(debug=True)
