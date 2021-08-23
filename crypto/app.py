@@ -27,11 +27,11 @@ from flask import Flask, request, send_from_directory
 import pandas as pd
 from sqlalchemy.sql.functions import user
 
-# #Import password for postgres
-# from config import password
+#Import password for postgres
+from config import password
 
-# # setup local postgress connection
-# rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
+# setup local postgress connection
+rds_connection_string = f'postgres:{password}@localhost:5432/Cryptocurrencies'
 
 import numpy as np
 
@@ -243,6 +243,7 @@ def data_by_name(token_name, start_date, end_date):
   
     return price_json
 
+
 @app.route("/api/<token_name>/<date>")
 def date_token(token_name, date):
 
@@ -256,6 +257,7 @@ def date_token(token_name, date):
                                 market_cap, \
                                 twitter_followers, reddit_average_comments_48h, \
                                 reddit_subscribers, \
+                                alexa_rank, \
                                 reddit_accounts_active_48h from master_db \
                                 where id like '{token_name}' \
                                 and dt = '{date}' \

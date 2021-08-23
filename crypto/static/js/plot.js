@@ -4,24 +4,31 @@
 function build_charts_year_a_year_b(token, year_a, year_b){
 
     // Log year to verify
-    console.log(token)
-    token === "" || "All"? console.log("token is empty") : console.log("token has a value")
-    const url_a = `/api/data/${year_a}`;
+    // console.log("Checking", token)
+    // console.log(year_a, "Vs. ", year_b)
 
-    // console.log(url_a)
+
+    // Check to see if a token was passed or if "all" was passed. If token was passes leave the value as token; otherwise change it to aid us in the sql query
+
+    token == "" || token == "All"? token = "All" : token = token;
+
+    const url_a = `/api/${token}/${year_a}`;
+
 
     d3.json(url_a).then(function(data) {
 
+        // console.log("This is what the endpoint is sending", data)
         // Check to see if a token was passed, if not, make it an empty string so chart for 2018 is not broken
-        token ? token = token : token = " ";
+        // token ? token = token : token = " ";
         // console.log(token) = ""
 
         //  Create an array with the data for the selected token
-        var resultArray = data.filter(tokenObj => tokenObj.name == token);
+        // var resultArray = data.filter(tokenObj => tokenObj.name == token);
 
+        // console.log("This is the resulting array", resultArray)
         //  Check to see if the result array has no results, if so, it means user wants to see all tokens in graph
         // 
-        resultArray == 0 ? data = data : data = resultArray; 
+        // resultArray == 0 ? data = data : data = resultArray; 
 
         // Make empty arrays to hold x and y values
         var crypto_names = []
@@ -32,12 +39,8 @@ function build_charts_year_a_year_b(token, year_a, year_b){
 
         for (i = 0; i < data.length ; i++){
         
-        index = data[i].id + 1
-        asset = data[i].name
-        // Combine index with asset name to save to a lits for x axis
-        combo = index.toString() + ' ' + asset
 
-        crypto_names.push(combo)
+        crypto_names.push(data[i].id)
         reddit_y.push(data[i].reddit_subscribers)
         twitter_y.push(data[i].twitter_followers)
         alexa_y.push(data[i].alexa_rank)
@@ -51,14 +54,15 @@ function build_charts_year_a_year_b(token, year_a, year_b){
         alexa_max_a = Math.max.apply(Math, alexa_y)
         
 
-        const url_b = `/api/data/${year_b}`;
+        const url_b = `/api/${token}/${year_b}`;
+
         d3.json(url_b).then(function(data) {
             //  Create an array with the data for the selected token
-            var resultArray = data.filter(tokenObj => tokenObj.name == token);
+            // var resultArray = data.filter(tokenObj => tokenObj.name == token);
 
-            //  Check to see if the result array has no results, if so, it means user wants to see all tokens in graph
-            // 
-            resultArray == 0 ? data = data : data = resultArray;
+            // //  Check to see if the result array has no results, if so, it means user wants to see all tokens in graph
+            // // 
+            // resultArray == 0 ? data = data : data = resultArray;
 
             // Make empty arrays to hold x and y values
             var crypto_names_b = []
@@ -69,11 +73,11 @@ function build_charts_year_a_year_b(token, year_a, year_b){
 
             for (i = 0; i < data.length ; i++){
 
-                index = data[i].id + 1
-                token = data[i].name
-                combo = index.toString() + ' ' + token
+                // index = data[i].id
+                // token = data[i].name
+                // combo = index.toString() + ' ' + token
 
-                crypto_names_b.push(combo)
+                crypto_names_b.push(data[i].id)
                 reddit_y_b.push(data[i].reddit_subscribers)
                 twitter_y_b.push(data[i].twitter_followers)
                 alexa_y_b.push(data[i].alexa_rank)
@@ -98,15 +102,15 @@ function build_charts_year_a_year_b(token, year_a, year_b){
             alexa_max_b > alexa_max_a ? alexa_y_scale = alexa_max_b : alexa_y_scale = alexa_max_a
 
             // Build plots for year a
-            build_plot(crypto_names, reddit_y, 'reddit', year_a, reddit_y_scale)
-            build_plot(crypto_names, twitter_y, 'twitter', year_a, twitter_y_scale)
-            build_plot(crypto_names, alexa_y, 'alexa', year_a, alexa_y_scale)
+            build_plot(crypto_names, reddit_y, 'reddit', 2018, reddit_y_scale)
+            build_plot(crypto_names, twitter_y, 'twitter', 2018, twitter_y_scale)
+            build_plot(crypto_names, alexa_y, 'alexa', 2018, alexa_y_scale)
 
 
             // Build plots for year b
-            build_plot(crypto_names_b, reddit_y_b, 'reddit', year_b, reddit_y_scale)
-            build_plot(crypto_names_b, twitter_y_b, 'twitter', year_b, twitter_y_scale)
-            build_plot(crypto_names_b, alexa_y_b, 'alexa', year_b, alexa_y_scale)
+            build_plot(crypto_names_b, reddit_y_b, 'reddit', 2021, reddit_y_scale)
+            build_plot(crypto_names_b, twitter_y_b, 'twitter', 2021, twitter_y_scale)
+            build_plot(crypto_names_b, alexa_y_b, 'alexa', 2021, alexa_y_scale)
 
 
         })
@@ -171,26 +175,41 @@ function define_color(social_media){
 function init() {
 
     // Grab a reference to the dropdown select element
-    var token_selector = d3.select("#selToken");
-
-
+    var token_selector = d3.select("#selToken")
 
     // Use the list of sample names to populate the dropdown menu options
-    d3.json("/api/data/2018").then((data) => {
+    d3.json("/api/All/2020-12-12").then((data) => {
     
-    // Add 'All option to see all entries
     token_selector
-    .append("option")
+    .append("Option")
     .text("All")
-    Object.entries(data).forEach(([key, value]) =>{
+    data.forEach(row => {
         token_selector
         .append("option")
-        .text(value.name)
-        .property("value", value.name)
-    })
+        .text(row.id)
+        .property("value", row.id)
+        
+    });
+
+    //  // Use this if API returns array instead of a jsonn
+    // token_selector
+    // .append("option")
+    // .text("All")
+    // Object.entries(data).forEach(([key, value]) =>{
+    //     token_selector
+    //     .append("option")
+    //     .text(value.name)
+    //     .property("value", value.name)
+    // })
     
-    // Initiate by buildi
-    build_charts_year_a_year_b("", 2018, 2021);
+    // Find out the value in the date range
+
+    date_a = d3.select("#start").node().value
+    date_b = d3.select("#end").node().value
+
+    // Initiate by building both comparison
+
+    build_charts_year_a_year_b("", date_a, date_b);
 
     });
   }
@@ -198,15 +217,16 @@ function init() {
 // Call a function to rebuild the chart when the option changes
 
 function optionChanged(newToken){
-    console.log(newToken)
+
 
     // var year_selector = d3.select("#selYearA");
-    console.log(d3.select("#selToken").node().value)
-    console.log(d3.select("#start").node().value)
-    console.log(d3.select("#end").node().value)
+    newToken = d3.select("#selToken").node().value
+
+    date_a = d3.select("#start").node().value
+    date_b = d3.select("#end").node().value
     // year_selector.this.value ? console.log("exist") : console.log("does not exist")
     // build_2018_charts(newToken)
-    build_charts_year_a_year_b(newToken, 2018, 2021)
+    build_charts_year_a_year_b(newToken, date_a, date_b)
 }
 
 
