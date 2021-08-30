@@ -16,23 +16,23 @@
     border-color: unset;
 }
 
-.btn-success:focus{
+.btn-success:focus {
     background-color: #6699FF; /*rgb(138, 223, 218) ;*/
 }
 
-.nav-link:active{
+.nav-link:active {
     background-color: gray;
 }
 
-.dropdown-item-reddit{
+.dropdown-item-reddit {
     color: RGBA(255, 86, 0, 1);
 }
 
-.dropdown-item-twitter{
+.dropdown-item-twitter {
     color: RGB(29,161,242)
 }
 
-.dropdown-item-alexa{
+.dropdown-item-alexa {
     color: rgb(55, 71, 90);
 }
 
@@ -53,9 +53,9 @@
     padding-top: 10vh;
 }
 
-.text-muted-link{
+.text-muted-link {
     padding-top: 5vh;
-    padding-left: 35%;
+    text-align: center;
 }
 
 a{
