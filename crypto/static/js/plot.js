@@ -3,10 +3,6 @@
 
 function build_charts_year_a_year_b(token, year_a, year_b){
 
-    // Log year to verify
-    // console.log("Checking", token)
-    // console.log(year_a, "Vs. ", year_b)
-
 
     // Check to see if a token was passed or if "all" was passed. If token was passes leave the value as token; otherwise change it to aid us in the sql query
 
@@ -17,18 +13,6 @@ function build_charts_year_a_year_b(token, year_a, year_b){
 
     d3.json(url_a).then(function(data) {
 
-        // console.log("This is what the endpoint is sending", data)
-        // Check to see if a token was passed, if not, make it an empty string so chart for 2018 is not broken
-        // token ? token = token : token = " ";
-        // console.log(token) = ""
-
-        //  Create an array with the data for the selected token
-        // var resultArray = data.filter(tokenObj => tokenObj.name == token);
-
-        // console.log("This is the resulting array", resultArray)
-        //  Check to see if the result array has no results, if so, it means user wants to see all tokens in graph
-        // 
-        // resultArray == 0 ? data = data : data = resultArray; 
 
         // Make empty arrays to hold x and y values
         var crypto_names = []
@@ -220,12 +204,18 @@ function optionChanged(newToken){
 
 
     // var year_selector = d3.select("#selYearA");
+    // Grab the name of the token
     newToken = d3.select("#selToken").node().value
 
+    // Grab the first date selected
     date_a = d3.select("#start").node().value
+
+    // Grab the second date selected
     date_b = d3.select("#end").node().value
     // year_selector.this.value ? console.log("exist") : console.log("does not exist")
     // build_2018_charts(newToken)
+
+    // Build charts
     build_charts_year_a_year_b(newToken, date_a, date_b)
 }
 
