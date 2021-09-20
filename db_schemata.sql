@@ -104,3 +104,107 @@
 
 -- ALTER TABLE master_db
 -- alter column dt type date using dt::date
+
+
+
+-- select * from master_db
+-- where dt is not null
+-- and reddit_average_posts_48h is not null
+-- order by market_cap desc;
+
+-- -- drop table master_db;
+
+-- -- ALTER TABLE master_db
+-- -- alter column dt type date using dt::date
+
+-- select * from master_db
+-- where dt between '2019-01-01' and '2019-02-01'
+
+-- -- Look at all the entries for a specific date
+
+-- select * from master_db
+-- where dt ='2020-09-01'
+-- order by market_cap desc;
+
+-- -- Look at
+-- select * from master_db
+-- WHERE reddit_subscribers IS NOT NULL
+-- order by reddit_average_comments_48h desc;
+
+-- --  Show all dates for which data has been scrapped, order in descending order
+-- select distinct(dt) from master_db
+-- order by 1 desc;
+
+-- --  Count all dates for which data has been scrapped, order in descending order
+-- select count(distinct(dt)) from master_db
+-- order by  1 desc;
+
+-- -- Count all the entries in the database
+-- select count(*) from master_db
+
+
+-- -- show datestyle
+-- -- set datestyle = 'ISO, DMY'
+-- -- drop table test_db
+
+-- select min(dt) from master_db where dt = '2019-03-01' order by market_cap desc;
+
+-- -- delete from master_db where dt = '2019-01-01'
+
+-- select max(dt)
+-- from master_db;
+
+
+
+
+-- -- Find average of average reddit comments for a coin for a specific data range
+
+-- select avg(reddit_average_comments_48h)
+--  from master_db
+-- WHERE reddit_subscribers IS NOT NULL
+-- and id like '%bitcoin%'
+-- and dt between '2020-02-25' and '2020-05-25'
+
+-- -- count how many days reddit_average_comments_48h was below the average for a 3 month period
+-- select count(*) from master_db
+-- WHERE reddit_subscribers IS NOT NULL
+-- and id like 'bitcoin'
+-- and reddit_average_comments_48h < 267
+-- and dt between '2019-12-04' and '2020-05-25';
+
+-- -- Print the dates below 6 month average
+-- select * from master_db
+-- WHERE reddit_subscribers IS NOT NULL
+-- and id like 'bitcoin'
+-- and reddit_average_comments_48h < 216
+-- and dt between '2019-12-04' and '2020-05-25'
+-- order by reddit_average_comments_48h asc;
+
+
+
+
+-- -- Select specific columns for all tokens for a specified date
+-- select dt::varchar, id,
+-- market_cap
+-- twitter_followers, reddit_average_comments_48h,
+-- reddit_subscribers,
+-- reddit_accounts_active_48h from master_db
+-- where id like '%%'
+-- and dt = '2019-04-05'
+-- and reddit_subscribers is not null
+-- order by market_cap desc;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
